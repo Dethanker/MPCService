@@ -25,7 +25,7 @@ RUN mkdir -p /local
 WORKDIR /local
 
 # install MPIR
-RUN curl -O 'http://mpir.org/mpir-3.0.0.tar.bz2'
+RUN curl -O 'http://sources.buildroot.net/mpir/mpir-3.0.0.tar.bz2'
 RUN tar xf mpir-3.0.0.tar.bz2
 WORKDIR /local/mpir-3.0.0
 RUN ./configure --enable-cxx --prefix="/local/mpir"
