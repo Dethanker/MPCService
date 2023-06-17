@@ -17,7 +17,7 @@
 <!-- Load custom js functions -->
 <script type="text/javascript" src="mpc_utils.js"></script>
 <script type="text/javascript" src="dataset_utils.js"></script>
-
+<script type="text/javascript" src="header.js"></script>
 
 <div class="sidenav">
   <h3 style="width:100%; text-align:center; font-weight: bold; font-size: 28px; color: grey;">隐私数据共享系统</h3>
@@ -27,7 +27,25 @@
   <button id="dataset-info" style="border-radius: 10px;">数据集信息</button>
 </div>
 
+<div style="margin-top: 20px; font-size: 24px; font-weight: bold; text-align: center; margin-left:-1000px; font-family: SimSun;">可共享节点信息</div>
+<div style="position: relative; top: 100px;left: 300px;">
+<table class="datasets">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nodes</th>
+      <th>Address</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody id="nodes">
+  </tbody>
+</table>
+<script> load_nodes_table() </script>
+</div>
+
 <style type="text/css">
+
 .sidenav {
   height: 100%;
   width: 300px; /* 增加宽度 */
@@ -58,14 +76,11 @@
   background-color: blue; /* 改变背景色为蓝色 */
   color: white; /* 同时改变字体颜色为白色以突出显示 */
 }
+.sidenav #node-info {
+  background-color: blue;
+  color: white;
+}
 </style>
-
-<script>
-  const nodeInfoButton = document.getElementById('node-info');
-nodeInfoButton.addEventListener('click', () => {
-  location.assign('nodes.html');
-});
-</script>
 <!-- 在页面左侧的导航栏 -->
 
 <!-- 
