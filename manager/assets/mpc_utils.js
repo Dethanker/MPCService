@@ -16,6 +16,8 @@ function load_nodes_table() {
         checkbox.className = "nodes";
         checkbox.value = i;
         i = i + 1;
+        var id= document.createElement("td");
+        id.innerHTML = i;
         var check = document.createElement("td");
         var name = document.createElement("td");
         name.innerHTML = node.name;
@@ -28,11 +30,24 @@ function load_nodes_table() {
         // Add the data elements to the row
         check.appendChild(checkbox);
         //row.appendChild(check);
-        row.appendChild(i);
+        row.appendChild(id);
         row.appendChild(name);
         row.appendChild(location);
         row.appendChild(port);
+        // 创建第一个按钮
+var button1 = document.createElement("button");
+button1.innerHTML = "查看公钥";
+row.appendChild(button1);
 
+// 创建第二个按钮
+var button2 = document.createElement("button");
+button2.innerHTML = "查看证书";
+row.appendChild(button2);
+
+// 创建第三个按钮
+var button3 = document.createElement("button");
+button3.innerHTML = "查看签名";
+row.appendChild(button3);
         nodesTable.appendChild(row);
       });
     });
