@@ -23,13 +23,15 @@ function load_nodes_table() {
         location.innerHTML = node.address;
         var description = document.createElement("td");
         description.innerHTML = node.description;
-
+        var port= document.createElement("td");
+        port.innerHTML = node.scale_port;
         // Add the data elements to the row
         check.appendChild(checkbox);
-        row.appendChild(check);
+        //row.appendChild(check);
+        row.appendChild(i);
         row.appendChild(name);
         row.appendChild(location);
-        row.appendChild(description);
+        row.appendChild(port);
 
         nodesTable.appendChild(row);
       });
