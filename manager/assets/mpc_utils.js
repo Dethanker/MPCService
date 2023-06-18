@@ -1,4 +1,20 @@
 function load_nodes_table() {
+  // 创建style元素
+var style = document.createElement("style");
+
+// 将CSS样式定义添加到style元素中
+style.innerHTML = `
+  .blue-button {
+    background-color: blue;
+    color: white;
+    border-radius: 10px; /* 设置圆角半径 */
+    padding: 10px 20px; /* 设置内边距 */
+  }
+`;
+
+// 将style元素插入到head元素中（或者其他适当的位置）
+document.head.appendChild(style);
+
   nodesTable = document.querySelector("#nodes");
   let i = 0;
   fetch("/nodes")
@@ -34,21 +50,32 @@ function load_nodes_table() {
         row.appendChild(name);
         row.appendChild(location);
         row.appendChild(port);
-        // 创建第一个按钮
+// 创建第一个按钮和对应的单元格
 var button1 = document.createElement("button");
 button1.innerHTML = "查看公钥";
-row.appendChild(button1);
+button1.classList.add("blue-button"); // 添加CSS类名
+var cell1 = document.createElement("td");
+cell1.appendChild(button1);
 
-// 创建第二个按钮
+// 创建第二个按钮和对应的单元格
 var button2 = document.createElement("button");
 button2.innerHTML = "查看证书";
-row.appendChild(button2);
+button2.classList.add("blue-button"); // 添加CSS类名
+var cell2 = document.createElement("td");
+cell2.appendChild(button2);
 
-// 创建第三个按钮
+// 创建第三个按钮和对应的单元格
 var button3 = document.createElement("button");
 button3.innerHTML = "查看签名";
-row.appendChild(button3);
-        nodesTable.appendChild(row);
+button3.classList.add("blue-button"); // 添加CSS类名
+var cell3 = document.createElement("td");
+cell3.appendChild(button3);
+
+// 将三个单元格依次添加到新的行元素中
+row.appendChild(cell1);
+row.appendChild(cell2);
+row.appendChild(cell3);
+
       });
     });
 }
