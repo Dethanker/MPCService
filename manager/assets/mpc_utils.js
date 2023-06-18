@@ -1,19 +1,17 @@
 function load_nodes_table() {
   // 创建style元素
-var style = document.createElement("style");
+//var style = document.createElement("style");
 
 // 将CSS样式定义添加到style元素中
-style.innerHTML = `
-  .blue-button {
-    background-color: blue;
-    color: white;
-    border-radius: 10px; /* 设置圆角半径 */
-    padding: 10px 20px; /* 设置内边距 */
-  }
-`;
+//style.innerHTML = `
+ // .blue-button {
+   // background-color: blue;
+   // color: white;
+ // }
+//`;
 
 // 将style元素插入到head元素中（或者其他适当的位置）
-document.head.appendChild(style);
+//document.head.appendChild(style);
 
   nodesTable = document.querySelector("#nodes");
   let i = 0;
