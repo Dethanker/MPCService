@@ -260,7 +260,7 @@ function load_nodes_table() {
           // 创建标题元素
           var title = document.createElement("h2");
           title.classList.add("popup-title");
-          title.innerHTML = "节点公钥";
+          title.innerHTML = "节点签名";
         
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);

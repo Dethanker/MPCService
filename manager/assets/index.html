@@ -17,6 +17,7 @@
 <!-- Load custom js functions -->
 <script type="text/javascript" src="mpc_utils.js"></script>
 <script type="text/javascript" src="dataset_utils.js"></script>
+<script type="text/javascript" src="header.js"></script>
 
 
 <div class="sidenav">
@@ -64,6 +65,12 @@
   const nodeInfoButton = document.getElementById('node-info');
 nodeInfoButton.addEventListener('click', () => {
   location.assign('nodes.html');
+});
+
+
+  const datasetInfoButton = document.getElementById('dataset-info');
+datasetInfoButton.addEventListener('click', () => {
+  location.assign('datasets.html');
 });
 </script>
 <!-- 在页面左侧的导航栏 -->
