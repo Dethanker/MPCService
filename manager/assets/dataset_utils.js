@@ -1,4 +1,49 @@
 function load_datasets_table() {
+    // 创建style元素
+    var style = document.createElement("style");
+
+    //将CSS样式定义添加到style元素中
+    style.innerHTML = `
+    .blue-button {
+      background-color: blue;
+      color: white;
+      border-radius: 10px; /* 设置圆角半径 */
+      padding: 10px 20px; /* 设置内边距 */
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1000px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .popup-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .popup button{
+      background-color: blue;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin-top: 40px;
+      cursor: pointer;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+    }
+    
+    `;
+  
+  // 将style元素插入到head元素中（或者其他适当的位置）
+    document.head.appendChild(style);
   datasetsTable = document.querySelector("#datasets");
 
   // datasetsTable.innerHTML = "";
@@ -36,24 +81,100 @@ function load_datasets_table() {
         checkbox.value = i;
         i = i + 1;
         var check = document.createElement("td");
-
+        var id = document.createElement("td");
+        id.innerHTML = i;
         var name = document.createElement("td");
         name.innerHTML = dataset.name;
+        var dataprovider = document.createElement("td");
+        dataprovider.innerHTML = "data_provider_test";
         var size = document.createElement("td");
         size.innerHTML = dataset.size;
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1; // 加一因为月份从0开始计数
+        const day = now.getDate();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        var time = document.createElement("td");
+        time.innerHTML = formattedTime;
         // var cols = document.createElement("td");
         // cols.innerHTML = dataset.cols;
         var shared_nodes = document.createElement("td");
         shared_nodes.innerHTML = dataset.shared_with;
 
         // Add the data elements to the row
-        check.appendChild(checkbox);
-        row.appendChild(check);
+        //check.appendChild(checkbox);
+        //row.appendChild(check);
+        row.appendChild(id);
         row.appendChild(name);
+        row.appendChild(dataprovider);
         row.appendChild(size);
+        row.appendChild(time);
         // row.appendChild(cols)
-        row.appendChild(shared_nodes);
+        //row.appendChild(shared_nodes);
 
+                // 创建第一个按钮和对应的单元格
+        var button1 = document.createElement("button");
+        button1.innerHTML = "查看";
+        button1.classList.add("blue-button"); // 添加CSS类名
+        var cell1 = document.createElement("td");
+        cell1.appendChild(button1);
+
+        // 为button1添加一个点击事件监听器
+        button1.addEventListener("click", function() {
+          // 创建一个div元素作为弹出框
+          var popup = document.createElement("div");
+          popup.classList.add("popup");
+        
+          // 创建标题元素
+          var title = document.createElement("h2");
+          title.classList.add("popup-title");
+          title.innerHTML = "数据集所有列名";
+        
+          // 将标题和其他内容添加到弹出框中
+          popup.appendChild(title);
+
+          var spacer = document.createElement("div");
+          spacer.classList.add("spacer"); // 添加class名称
+          spacer.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer);
+
+          var row = this.parentNode.parentNode;
+
+          // 获取该行中第一个单元格的文本内容
+          var value = row.cells[0].textContent;
+          if(value==1){
+            popup.appendChild(document.createTextNode("diagnosis,radius_mean,texture_mean,perimeter_mean,area_mean,smoothness_mean,compactness_mean,concavity_mean,concave_points_mean,symmetry_mean,"));
+            popup.appendChild(document.createTextNode("fractal_dimension_mean,radius_se,texture_se,perimeter_se,area_se,smoothness_se,compactness_se,concavity_se,concave_points_se,symmetry_se,fractal_dimension_se,"));
+            popup.appendChild(document.createTextNode("radius_worst,texture_worst,perimeter_worst,area_worst,smoothness_worst,compactness_worst,concavity_worst,concave_points_worst,symmetry_worst,fractal_dimension_worst"));
+          }
+          else if(value==2){
+            popup.appendChild(document.createTextNode("male,age,education,currentSmoker,cigsPerDay,BPMeds,prevalentStroke,prevalentHyp,diabetes,totChol,sysBP,diaBP,BMI,heartRate,glucose,TenYearCHD"));
+          }
+          else if(value==3){
+            popup.appendChild(document.createTextNode("male,age,education,currentSmoker,cigsPerDay,BPMeds,prevalentStroke,prevalentHyp,diabetes,totChol,sysBP,diaBP,BMI,heartRate,glucose,TenYearCHD"));
+          }
+
+          var spacer2 = document.createElement("div");
+          spacer2.classList.add("spacer"); // 添加class名称
+          spacer2.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer2);
+          // 添加确定按钮
+          var btn = document.createElement("button");
+          btn.innerHTML = "确定";
+        
+          // 将确定按钮添加到弹出框中，并添加点击事件监听器
+          popup.appendChild(btn);
+          btn.addEventListener("click", function() {
+            // 关闭弹出框
+            popup.remove();
+          });
+          // 添加弹出框到body元素中
+          document.body.appendChild(popup);
+        });
+        row.appendChild(cell1);
         datasetsTable.appendChild(row);
       });
     });
