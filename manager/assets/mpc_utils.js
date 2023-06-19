@@ -27,6 +27,15 @@ function load_nodes_table() {
     font-weight: bold;
     margin-bottom: 10px;
   }
+
+  .popup button{
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
   `;
 
 // 将style元素插入到head元素中（或者其他适当的位置）
@@ -89,6 +98,16 @@ function load_nodes_table() {
           popup.appendChild(title);
           popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
         
+          // 添加确定按钮
+          var btn = document.createElement("button");
+          btn.innerHTML = "确定";
+
+          // 将确定按钮添加到弹出框中，并添加点击事件监听器
+          popup.appendChild(btn);
+          btn.addEventListener("click", function() {
+            // 关闭弹出框
+            popup.remove();
+          });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
         });
@@ -115,6 +134,16 @@ function load_nodes_table() {
           popup.appendChild(title);
           popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
         
+          // 添加确定按钮
+          var btn = document.createElement("button");
+          btn.innerHTML = "确定";
+
+          // 将确定按钮添加到弹出框中，并添加点击事件监听器
+          popup.appendChild(btn);
+          btn.addEventListener("click", function() {
+            // 关闭弹出框
+            popup.remove();
+          });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
         });
@@ -140,7 +169,16 @@ function load_nodes_table() {
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
           popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
-        
+          // 添加确定按钮
+          var btn = document.createElement("button");
+          btn.innerHTML = "确定";
+
+          // 将确定按钮添加到弹出框中，并添加点击事件监听器
+          popup.appendChild(btn);
+          btn.addEventListener("click", function() {
+            // 关闭弹出框
+            popup.remove();
+          }); 
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
         });
