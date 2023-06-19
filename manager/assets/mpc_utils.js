@@ -15,7 +15,7 @@ function load_nodes_table() {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 1000px;
     background-color: white;
     border-radius: 10px;
     padding: 20px;
@@ -105,6 +105,11 @@ function load_nodes_table() {
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
 
+          var spacer = document.createElement("div");
+          spacer.classList.add("spacer"); // 添加class名称
+          spacer.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer);
+
           var row = this.parentNode.parentNode;
 
           // 获取该行中第一个单元格的文本内容
@@ -119,10 +124,10 @@ function load_nodes_table() {
             popup.appendChild(document.createTextNode(pubkey3));
           }
 
-          var spacer = document.createElement("div");
-          spacer.classList.add("spacer"); // 添加class名称
-          spacer.style.height = "30px"; // 设置高度
-          popup.appendChild(spacer);
+          var spacer2 = document.createElement("div");
+          spacer2.classList.add("spacer"); // 添加class名称
+          spacer2.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer2);
           // 添加确定按钮
           var btn = document.createElement("button");
           btn.innerHTML = "确定";
@@ -158,11 +163,17 @@ function load_nodes_table() {
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
 
+
+          var spacer = document.createElement("div");
+          spacer.classList.add("spacer"); // 添加class名称
+          spacer.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer);
+
           var row = this.parentNode.parentNode;
 
           // 获取该行中第一个单元格的文本内容
           var value = row.cells[0].textContent;
-          if(value==1){
+ 
             popup.appendChild(document.createTextNode("-----BEGIN CERTIFICATE-----"));
             popup.appendChild(document.createElement("br"));
             popup.appendChild(document.createTextNode("MIIEFDCCAfwCAWUwDQYJKoZIhvcNAQELBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV"));
@@ -210,13 +221,14 @@ function load_nodes_table() {
             popup.appendChild(document.createTextNode("j191KrJPlo9HpiQISUNSoTDmNKLbmTPGnn0gKsVPC4/SwDZ1AIM+Dw=="));
             popup.appendChild(document.createElement("br"));
             popup.appendChild(document.createTextNode("-----END CERTIFICATE-----"));
-          }
-          else if(value==2){
-            popup.appendChild(document.createTextNode("7d8c2f884e25a4e1bc5dce368fa1dc9b"));
-          }
-          else if(value==3){
-            popup.appendChild(document.createTextNode("d649c4a1a2b163f50bbfe4fa2e5ade8f"));
-          }
+          
+
+
+
+          var spacer2 = document.createElement("div");
+          spacer2.classList.add("spacer"); // 添加class名称
+          spacer2.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer2);
           // 添加确定按钮
           var btn = document.createElement("button");
           btn.innerHTML = "确定";
@@ -252,17 +264,40 @@ function load_nodes_table() {
         
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
-          popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+
+          var spacer = document.createElement("div");
+          spacer.classList.add("spacer"); // 添加class名称
+          spacer.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer);
+
+          var row = this.parentNode.parentNode;
+
+          // 获取该行中第一个单元格的文本内容
+          var value = row.cells[0].textContent;
+          if(value==1){
+            popup.appendChild(document.createTextNode("8bce4a196f5c62821e9d0a6c4aa6ecec7c9a3e9dbf1bea09c2daaf281d5b02a5b411eb5eb6335f3143ca0c42f38a434d"));
+          }
+          else if(value==2){
+            popup.appendChild(document.createTextNode("476E697B0A322E2069742773206E6F7420746F6F206C61746520746F20736574476F506B2D332E35"));
+          }
+          else if(value==3){
+            popup.appendChild(document.createTextNode("7f23c8d2b403e6c9a4c3f87b0bc5d964b9f1ea32bd129a6ac73a5af09b4040cc1dfb3f1b8e90726a19d7c3e6e28f7c1e"));
+          }
+
+          var spacer2 = document.createElement("div");
+          spacer2.classList.add("spacer"); // 添加class名称
+          spacer2.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer2);
           // 添加确定按钮
           var btn = document.createElement("button");
           btn.innerHTML = "确定";
-
+        
           // 将确定按钮添加到弹出框中，并添加点击事件监听器
           popup.appendChild(btn);
           btn.addEventListener("click", function() {
             // 关闭弹出框
             popup.remove();
-          }); 
+          });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
         });
