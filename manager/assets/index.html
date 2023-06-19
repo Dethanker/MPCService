@@ -25,7 +25,19 @@
   <button id="new-computation" style="border-radius: 10px;">发起计算</button>
   <button id="history-info" style="border-radius: 10px;">历史计算</button>
   <button id="node-info" style="border-radius: 10px;">节点信息</button>
+  <script>
+    var nodeInfoButton = document.getElementById('node-info');
+  nodeInfoButton.addEventListener('click', () => {
+    location.assign('nodes.html');
+  });
+  </script>
   <button id="dataset-info" style="border-radius: 10px;">数据集信息</button>
+  <script>
+    var datasetInfoButton = document.getElementById('dataset-info');
+  datasetInfoButton.addEventListener('click', () => {
+    location.assign('datasets.html');
+  });
+  </script>
 </div>
 
 <style type="text/css">
@@ -61,18 +73,7 @@
 }
 </style>
 
-<script>
-  var nodeInfoButton = document.getElementById('node-info');
-nodeInfoButton.addEventListener('click', () => {
-  location.assign('nodes.html');
-});
 
-
-  var datasetInfoButton = document.getElementById('dataset-info');
-datasetInfoButton.addEventListener('click', () => {
-  location.assign('datasets.html');
-});
-</script>
 <!-- 在页面左侧的导航栏 -->
 
 <!-- 

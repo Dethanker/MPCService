@@ -25,6 +25,14 @@
   <button id="history-info" style="border-radius: 10px;">历史计算</button>
   <button id="node-info" style="border-radius: 10px;">节点信息</button>
   <button id="dataset-info" style="border-radius: 10px;">数据集信息</button>
+  <script>
+
+
+    var datasetInfoButton = document.getElementById('dataset-info');
+  datasetInfoButton.addEventListener('click', () => {
+    location.assign('datasets.html');
+  });
+  </script>
 </div>
 
 <!--<div style="margin-top: 20px; font-size: 24px; font-weight: bold; text-align: center; margin-left:-1000px; font-family: SimSun;">可共享节点信息</div> -->
