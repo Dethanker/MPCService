@@ -10,6 +10,23 @@ function load_nodes_table() {
     border-radius: 10px; /* 设置圆角半径 */
     padding: 10px 20px; /* 设置内边距 */
   }
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
   `;
 
 // 将style元素插入到head元素中（或者其他适当的位置）
@@ -59,7 +76,21 @@ function load_nodes_table() {
 
         // 为button1添加一个点击事件监听器
         button1.addEventListener("click", function() {
-          alert("8a3f7b95c6d248e1fb4cd7e5a0e937bc");
+          // 创建一个div元素作为弹出框
+          var popup = document.createElement("div");
+          popup.classList.add("popup");
+        
+          // 创建标题元素
+          var title = document.createElement("h2");
+          title.classList.add("popup-title");
+          title.innerHTML = "节点公钥";
+        
+          // 将标题和其他内容添加到弹出框中
+          popup.appendChild(title);
+          popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+        
+          // 添加弹出框到body元素中
+          document.body.appendChild(popup);
         });
 
         // 创建第二个按钮和对应的单元格
@@ -71,7 +102,21 @@ function load_nodes_table() {
 
         // 为button2添加一个点击事件监听器
         button2.addEventListener("click", function() {
-          alert("弹出对话框");
+          // 创建一个div元素作为弹出框
+          var popup = document.createElement("div");
+          popup.classList.add("popup");
+        
+          // 创建标题元素
+          var title = document.createElement("h2");
+          title.classList.add("popup-title");
+          title.innerHTML = "节点公钥";
+        
+          // 将标题和其他内容添加到弹出框中
+          popup.appendChild(title);
+          popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+        
+          // 添加弹出框到body元素中
+          document.body.appendChild(popup);
         });
 
         // 创建第三个按钮和对应的单元格
@@ -83,7 +128,21 @@ function load_nodes_table() {
 
         // 为button3添加一个点击事件监听器
         button3.addEventListener("click", function() {
-          alert("弹出对话框");
+          // 创建一个div元素作为弹出框
+          var popup = document.createElement("div");
+          popup.classList.add("popup");
+        
+          // 创建标题元素
+          var title = document.createElement("h2");
+          title.classList.add("popup-title");
+          title.innerHTML = "节点公钥";
+        
+          // 将标题和其他内容添加到弹出框中
+          popup.appendChild(title);
+          popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+        
+          // 添加弹出框到body元素中
+          document.body.appendChild(popup);
         });
         
         // 将三个单元格依次添加到新的行元素中
