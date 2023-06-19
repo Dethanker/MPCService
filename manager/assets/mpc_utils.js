@@ -35,7 +35,11 @@ function load_nodes_table() {
     padding: 10px 20px;
     margin-top: 20px;
     cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    right: 0;
   }
+  
   `;
 
 // 将style元素插入到head元素中（或者其他适当的位置）
@@ -96,7 +100,15 @@ function load_nodes_table() {
         
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
-          popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+          if(i==1){
+            popup.appendChild(document.createTextNode("8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+          }
+          else if(i==2){
+            popup.appendChild(document.createTextNode("7d8c2f884e25a4e1bc5dce368fa1dc9b"));
+          }
+          else if(i==3){
+            popup.appendChild(document.createTextNode("d649c4a1a2b163f50bbfe4fa2e5ade8f"));
+          }
         
           // 添加确定按钮
           var btn = document.createElement("button");
@@ -128,12 +140,65 @@ function load_nodes_table() {
           // 创建标题元素
           var title = document.createElement("h2");
           title.classList.add("popup-title");
-          title.innerHTML = "节点公钥";
+          title.innerHTML = "节点证书";
         
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
-          popup.appendChild(document.createTextNode("公钥：8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
-        
+          if(i==1){
+            popup.appendChild(document.createTextNode("-----BEGIN CERTIFICATE-----"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("MIIEFDCCAfwCAWUwDQYJKoZIhvcNAQELBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("BAgMClNvbWUtU3RhdGUxITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("ZDAeFw0yMjA3MjUxNTA0MzdaFw0yNTA0MjAxNTA0MzdaMFsxCzAJBgNVBAYTAkRF"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("MRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRz"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("IFB0eSBMdGQxFDASBgNVBAMMC0Jlcmxpbl9ub2RlMIIBIjANBgkqhkiG9w0BAQEF"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("AAOCAQ8AMIIBCgKCAQEA2aw+98xZbVjdolf0BHhrlEiHgtHy4A3n9sYS/lXLeqUj"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("P/Ne9JYHzoedtZtuSqgUHZ4LvnZ90Jy/4SOnDP/iinsAWOcmZN5aYofbDA19XCoS"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("JiY7Ga30EDpp3JY4GCE7DMkgyqbNwlTsXZKEaU06uWVujqZ24jlHiwVoQg+jh3oY"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("/nNkVvrlC0TCMDYl4qVbgRjPSk/4Kunj6Qp3aghDMFFfwJLZCHJQtWQ3XmO0sf+"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("4Z9Os2ElhpxuN1VEUIkzwL/s3ItziNs//Fd/wLl1v3YyGZCc/x/33hRHqjuHXEHq"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("Xsy0nDyB9jvZRCzslgAzQTt4KQc4rLBeTZsJOrgNSwIDAQABMA0GCSqGSIb3DQEB"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("CwUAA4ICAQBE/v+qPWgQtoxqryb3v6FrEyBZE5gKyY/DlYUMZkehbzsKiOzld9Tj"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("07p3RlcpobpCgQC5HRfBnqJNUx5SU6KM394uJIz7gdotb9rL+ZdridpSTp1iDpq8"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("9+t9F/jRSZKCiV/ZS74P1C9Hm+yGYz6maBrdoXa8WUpLIn4CYF1TJK8Le48YtTyO"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("2lbdj62e3BTtCLsfGLulyLjaKMWTihorKM8n/gcYhcdlqAVBDFqfq0fsTqj4nWay"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("VYwrCo8bc+LUAdh8D2c8rZ61Nut6gHjaxhzDePpDgOIyIBoHWZQKbwWwKzOrEv8x"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("qir0hJS4Ya84TaNi5TYEBxDxD6JgIG4QOJ9FsGW3mukLr2viCIBUoQWE/PeqsxE/"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("VrMidL9+zhERFlyb8OVJT3orilZ/9Vds+2y4Bj76VafRMY2uNdILKqAxSBfw6Fpn"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("bpmUXgTYcBCro2XxunibwIbc2Uc/dN2kyJ2gvMUc9XfYjrXCQeJgsP+83s02IjiJ"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("CyqwsbXjcBBK4gS+17SN4vPXKopH5IPNfo9bPa4NflFS3wIWVIVn90IK7mdvSkE7"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("OAjjD1URLXQENr0D5Gz3XUde+BQHShx52VGcIMxyG19doN1iTQuGwnKnRzpHCwBR"));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("j191KrJPlo9HpiQISUNSoTDmNKLbmTPGnn0gKsVPC4/SwDZ1AIM+Dw=="));
+            popup.appendChild(document.createElement("br"));
+            popup.appendChild(document.createTextNode("-----END CERTIFICATE-----"));
+          }
+          else if(i==2){
+            popup.appendChild(document.createTextNode("7d8c2f884e25a4e1bc5dce368fa1dc9b"));
+          }
+          else if(i==3){
+            popup.appendChild(document.createTextNode("d649c4a1a2b163f50bbfe4fa2e5ade8f"));
+          }
           // 添加确定按钮
           var btn = document.createElement("button");
           btn.innerHTML = "确定";
