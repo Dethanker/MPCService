@@ -52,25 +52,40 @@ function load_nodes_table() {
         row.appendChild(port);
         // 创建第一个按钮和对应的单元格
         var button1 = document.createElement("button");
-        button1.innerHTML = "查看公钥";
+        button1.innerHTML = "查看";
         button1.classList.add("blue-button"); // 添加CSS类名
         var cell1 = document.createElement("td");
         cell1.appendChild(button1);
 
+        // 为button1添加一个点击事件监听器
+        button1.addEventListener("click", function() {
+          alert("8a3f7b95c6d248e1fb4cd7e5a0e937bc");
+        });
+
         // 创建第二个按钮和对应的单元格
         var button2 = document.createElement("button");
-        button2.innerHTML = "查看证书";
+        button2.innerHTML = "查看";
         button2.classList.add("blue-button"); // 添加CSS类名
         var cell2 = document.createElement("td");
         cell2.appendChild(button2);
 
+        // 为button2添加一个点击事件监听器
+        button2.addEventListener("click", function() {
+          alert("弹出对话框");
+        });
+
         // 创建第三个按钮和对应的单元格
         var button3 = document.createElement("button");
-        button3.innerHTML = "查看签名";
+        button3.innerHTML = "查看";
         button3.classList.add("blue-button"); // 添加CSS类名
         var cell3 = document.createElement("td");
         cell3.appendChild(button3);
 
+        // 为button3添加一个点击事件监听器
+        button3.addEventListener("click", function() {
+          alert("弹出对话框");
+        });
+        
         // 将三个单元格依次添加到新的行元素中
         row.appendChild(cell1);
         row.appendChild(cell2);
