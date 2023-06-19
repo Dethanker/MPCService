@@ -80,6 +80,10 @@ function load_nodes_table() {
         row.appendChild(name);
         row.appendChild(location);
         row.appendChild(port);
+
+        var pubkey1 = "8a3f7b95c6d248e1fb4cd7e5a0e937bc";
+        var pubkey2 = "7d8c2f884e25a4e1bc5dce368fa1dc9b";
+        var pubkey3 = "d649c4a1a2b163f50bbfe4fa2e5ade8f";
         // 创建第一个按钮和对应的单元格
         var button1 = document.createElement("button");
         button1.innerHTML = "查看";
@@ -100,16 +104,25 @@ function load_nodes_table() {
         
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
-          if(i==1){
-            popup.appendChild(document.createTextNode("8a3f7b95c6d248e1fb4cd7e5a0e937bc"));
+
+          var row = this.parentNode.parentNode;
+
+          // 获取该行中第一个单元格的文本内容
+          var value = row.cells[0].textContent;
+          if(value==1){
+            popup.appendChild(document.createTextNode(pubkey1));
           }
-          else if(i==2){
-            popup.appendChild(document.createTextNode("7d8c2f884e25a4e1bc5dce368fa1dc9b"));
+          else if(value==2){
+            popup.appendChild(document.createTextNode(pubkey2));
           }
-          else if(i==3){
-            popup.appendChild(document.createTextNode("d649c4a1a2b163f50bbfe4fa2e5ade8f"));
+          else if(value==3){
+            popup.appendChild(document.createTextNode(pubkey3));
           }
-        
+
+          var spacer = document.createElement("div");
+          spacer.classList.add("spacer"); // 添加class名称
+          spacer.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer);
           // 添加确定按钮
           var btn = document.createElement("button");
           btn.innerHTML = "确定";
@@ -122,7 +135,7 @@ function load_nodes_table() {
           });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
-        }.bind(null, i));
+        });
 
         // 创建第二个按钮和对应的单元格
         var button2 = document.createElement("button");
@@ -132,7 +145,7 @@ function load_nodes_table() {
         cell2.appendChild(button2);
 
         // 为button2添加一个点击事件监听器
-        button1.addEventListener("click", function() {
+        button2.addEventListener("click", function() {
           // 创建一个div元素作为弹出框
           var popup = document.createElement("div");
           popup.classList.add("popup");
@@ -144,7 +157,12 @@ function load_nodes_table() {
         
           // 将标题和其他内容添加到弹出框中
           popup.appendChild(title);
-          if(i==1){
+
+          var row = this.parentNode.parentNode;
+
+          // 获取该行中第一个单元格的文本内容
+          var value = row.cells[0].textContent;
+          if(value==1){
             popup.appendChild(document.createTextNode("-----BEGIN CERTIFICATE-----"));
             popup.appendChild(document.createElement("br"));
             popup.appendChild(document.createTextNode("MIIEFDCCAfwCAWUwDQYJKoZIhvcNAQELBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV"));
@@ -193,10 +211,10 @@ function load_nodes_table() {
             popup.appendChild(document.createElement("br"));
             popup.appendChild(document.createTextNode("-----END CERTIFICATE-----"));
           }
-          else if(i==2){
+          else if(value==2){
             popup.appendChild(document.createTextNode("7d8c2f884e25a4e1bc5dce368fa1dc9b"));
           }
-          else if(i==3){
+          else if(value==3){
             popup.appendChild(document.createTextNode("d649c4a1a2b163f50bbfe4fa2e5ade8f"));
           }
           // 添加确定按钮
@@ -211,7 +229,7 @@ function load_nodes_table() {
           });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
-        }.bind(null, i));
+        });
 
 
         // 创建第三个按钮和对应的单元格
