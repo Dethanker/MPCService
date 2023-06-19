@@ -33,7 +33,7 @@ function load_nodes_table() {
     color: white;
     border-radius: 10px;
     padding: 10px 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     cursor: pointer;
     position: fixed;
     bottom: 0;
@@ -113,7 +113,7 @@ function load_nodes_table() {
           // 添加确定按钮
           var btn = document.createElement("button");
           btn.innerHTML = "确定";
-
+        
           // 将确定按钮添加到弹出框中，并添加点击事件监听器
           popup.appendChild(btn);
           btn.addEventListener("click", function() {
@@ -122,7 +122,7 @@ function load_nodes_table() {
           });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
-        });
+        }.bind(null, i));
 
         // 创建第二个按钮和对应的单元格
         var button2 = document.createElement("button");
@@ -132,7 +132,7 @@ function load_nodes_table() {
         cell2.appendChild(button2);
 
         // 为button2添加一个点击事件监听器
-        button2.addEventListener("click", function() {
+        button1.addEventListener("click", function() {
           // 创建一个div元素作为弹出框
           var popup = document.createElement("div");
           popup.classList.add("popup");
@@ -211,7 +211,8 @@ function load_nodes_table() {
           });
           // 添加弹出框到body元素中
           document.body.appendChild(popup);
-        });
+        }.bind(null, i));
+
 
         // 创建第三个按钮和对应的单元格
         var button3 = document.createElement("button");
