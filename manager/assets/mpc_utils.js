@@ -7,11 +7,13 @@ function load_nodes_table() {
   .blue-button {
     background-color: blue;
     color: white;
+    border-radius: 10px; /* 设置圆角半径 */
+    padding: 10px 20px; /* 设置内边距 */
   }
   `;
 
 // 将style元素插入到head元素中（或者其他适当的位置）
-//document.head.appendChild(style);
+  document.head.appendChild(style);
 
   nodesTable = document.querySelector("#nodes");
   let i = 0;
