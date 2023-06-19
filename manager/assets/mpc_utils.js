@@ -73,7 +73,7 @@ cell3.appendChild(button3);
 row.appendChild(cell1);
 row.appendChild(cell2);
 row.appendChild(cell3);
-
+nodesTable.appendChild(row);
       });
     });
 }
