@@ -23,11 +23,15 @@
   <h3 style="width:100%; text-align:center; font-weight: bold; font-size: 28px; color: grey;">隐私数据共享系统</h3>
   <button id="new-computation" style="border-radius: 10px;">发起计算</button>
   <button id="history-info" style="border-radius: 10px;">历史计算</button>
+  <script>
+    var historyInfoButton = document.getElementById('history-info');
+  historyInfoButton.addEventListener('click', () => {
+    location.assign('history.html');
+  });
+</script>
   <button id="node-info" style="border-radius: 10px;">节点信息</button>
   <button id="dataset-info" style="border-radius: 10px;">数据集信息</button>
   <script>
-
-
     var datasetInfoButton = document.getElementById('dataset-info');
   datasetInfoButton.addEventListener('click', () => {
     location.assign('datasets.html');

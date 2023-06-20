@@ -15,20 +15,14 @@
 <script type="text/javascript" src="load_wasm.js"></script>
 
 <!-- Load custom js functions -->
-
+<script type="text/javascript" src="mpc_utils.js"></script>
 <script type="text/javascript" src="dataset_utils.js"></script>
-
+<script type="text/javascript" src="header.js"></script>
 
 <div class="sidenav">
   <h3 style="width:100%; text-align:center; font-weight: bold; font-size: 28px; color: grey;">隐私数据共享系统</h3>
   <button id="new-computation" style="border-radius: 10px;">发起计算</button>
   <button id="history-info" style="border-radius: 10px;">历史计算</button>
-  <script>
-    var historyInfoButton = document.getElementById('history-info');
-  historyInfoButton.addEventListener('click', () => {
-    location.assign('history.html');
-  });
-</script>
   <button id="node-info" style="border-radius: 10px;">节点信息</button>
   <script>
     var nodeInfoButton = document.getElementById('node-info');
@@ -37,6 +31,14 @@
   });
 </script>
   <button id="dataset-info" style="border-radius: 10px;">数据集信息</button>
+  <script>
+
+
+    var datasetInfoButton = document.getElementById('dataset-info');
+  datasetInfoButton.addEventListener('click', () => {
+    location.assign('datasets.html');
+  });
+  </script>
 </div>
 
 <!--<div style="margin-top: 20px; font-size: 24px; font-weight: bold; text-align: center; margin-left:-1000px; font-family: SimSun;">可共享节点信息</div> -->
@@ -45,17 +47,17 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>名称</th>
-      <th>提供方</th>
-      <th>大小</th>
-      <th>更新时间</th>
-      <th>数据列</th>
+      <th>时间</th>
+      <th>数据集</th>
+      <th>程序</th>
+      <th>参数</th>
+      <th>结果</th>
     </tr>
   </thead>
-  <tbody id="datasets">
+  <tbody id="history-compu">
   </tbody>
 </table>
-<script> load_datasets_table() </script>
+<script></script>
 </div>
 
 <style type="text/css">
@@ -93,8 +95,17 @@
   background-color: blue; /* 改变背景色为蓝色 */
   color: white; /* 同时改变字体颜色为白色以突出显示 */
 }
-.sidenav #dataset-info {
+.sidenav #history-info {
   background-color: blue;
   color: white;
 }
 </style>
+
+<script>
+
+
+  var datasetInfoButton = document.getElementById('dataset-info');
+datasetInfoButton.addEventListener('click', () => {
+  location.assign('datasets.html');
+});
+</script>
