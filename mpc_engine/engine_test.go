@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Dethanker/MPCService/key_management"
 	log "github.com/sirupsen/logrus"
-	"github.com/krakenh2020/MPCService/key_management"
 
+	"github.com/Dethanker/MPCService/data_management"
+	"github.com/Dethanker/MPCService/mpc_engine"
 	"github.com/stretchr/testify/assert"
-	"github.com/krakenh2020/MPCService/data_management"
-	"github.com/krakenh2020/MPCService/mpc_engine"
 )
 
 func TestEngine(t *testing.T) {

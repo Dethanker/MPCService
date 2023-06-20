@@ -13,10 +13,10 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Dethanker/MPCService/data_management"
+	"github.com/Dethanker/MPCService/logging"
 	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
-	"github.com/krakenh2020/MPCService/data_management"
-	"github.com/krakenh2020/MPCService/logging"
 )
 
 // todo: error management

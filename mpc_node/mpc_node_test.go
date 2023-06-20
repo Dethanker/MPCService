@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/krakenh2020/MPCService/manager"
-	"github.com/krakenh2020/MPCService/mpc_node"
+	"github.com/Dethanker/MPCService/manager"
+	"github.com/Dethanker/MPCService/mpc_node"
 )
 
 func TestRunNode(t *testing.T) {

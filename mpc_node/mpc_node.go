@@ -9,13 +9,13 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/Dethanker/MPCService/data_management"
+	"github.com/Dethanker/MPCService/key_management"
+	"github.com/Dethanker/MPCService/logging"
+	"github.com/Dethanker/MPCService/manager"
+	"github.com/Dethanker/MPCService/mpc_engine"
 	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
-	"github.com/krakenh2020/MPCService/data_management"
-	"github.com/krakenh2020/MPCService/key_management"
-	"github.com/krakenh2020/MPCService/logging"
-	"github.com/krakenh2020/MPCService/manager"
-	"github.com/krakenh2020/MPCService/mpc_engine"
 )
 
 // RunNode starts a node server at localhost.

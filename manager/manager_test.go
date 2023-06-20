@@ -11,15 +11,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/krakenh2020/MPCService/data_provider"
-	"github.com/krakenh2020/MPCService/mpc_node"
+	"github.com/Dethanker/MPCService/data_provider"
+	"github.com/Dethanker/MPCService/mpc_node"
 
-	"github.com/krakenh2020/MPCService/data_management"
-	"github.com/krakenh2020/MPCService/manager"
+	"github.com/Dethanker/MPCService/data_management"
+	"github.com/Dethanker/MPCService/manager"
 	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/krakenh2020/MPCService/key_management"
+	"github.com/Dethanker/MPCService/key_management"
 )
 
 func TestRequestComputationWithManager(t *testing.T) {

@@ -12,12 +12,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/krakenh2020/MPCService/logging"
+	"github.com/Dethanker/MPCService/logging"
 
+	"github.com/Dethanker/MPCService/data_provider"
+	"github.com/Dethanker/MPCService/mpc_engine"
 	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
-	"github.com/krakenh2020/MPCService/data_provider"
-	"github.com/krakenh2020/MPCService/mpc_engine"
 
 	"github.com/gorilla/mux"
 )

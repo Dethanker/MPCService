@@ -1,4 +1,4 @@
-module github.com/krakenh2020/MPCService
+module github.com/Dethanker/MPCService
 
 go 1.17
 

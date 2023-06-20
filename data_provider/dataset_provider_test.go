@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/krakenh2020/MPCService/manager"
+	"github.com/Dethanker/MPCService/manager"
 
-	"github.com/krakenh2020/MPCService/data_provider"
+	"github.com/Dethanker/MPCService/data_provider"
 )
 
 func TestRunDatasetProvider(t *testing.T) {

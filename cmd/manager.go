@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/krakenh2020/MPCService/config"
-	"github.com/krakenh2020/MPCService/manager"
+	"github.com/Dethanker/MPCService/config"
+	"github.com/Dethanker/MPCService/manager"
 	"github.com/urfave/cli"
 )
 

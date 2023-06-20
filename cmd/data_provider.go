@@ -3,8 +3,8 @@ package cmd
 import (
 	"strings"
 
-	"github.com/krakenh2020/MPCService/config"
-	"github.com/krakenh2020/MPCService/data_provider"
+	"github.com/Dethanker/MPCService/config"
+	"github.com/Dethanker/MPCService/data_provider"
 	"github.com/urfave/cli"
 )
 

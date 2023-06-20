@@ -82,8 +82,8 @@ RUN tar -C /usr/local -xzf go1.17.3.linux-amd64.tar.gz
 ENV PATH="/usr/local/go/bin:${PATH}"
 
 ## Install MPCService
-ADD . / /root/go/src/github.com/krakenh2020/MPCService/
-WORKDIR /root/go/src/github.com/krakenh2020/MPCService
+ADD . / /root/go/src/github.com/Dethanker/MPCService/
+WORKDIR /root/go/src/github.com/Dethanker/MPCService
 RUN go install
 ENV PATH="/root/go/bin:${PATH}"
 ENV GOPATH="/root/go"
@@ -110,6 +110,6 @@ RUN cp -r computation/scale_files/Input /SCALE-MAMBA/Input
 WORKDIR /SCALE-MAMBA
 RUN make progs
 
-WORKDIR /root/go/src/github.com/krakenh2020/MPCService
+WORKDIR /root/go/src/github.com/Dethanker/MPCService
 # Start the MPC server
 ENTRYPOINT ["MPCService"]

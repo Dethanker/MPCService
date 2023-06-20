@@ -13,9 +13,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Dethanker/MPCService/computation"
+	"github.com/Dethanker/MPCService/key_management"
 	log "github.com/sirupsen/logrus"
-	"github.com/krakenh2020/MPCService/computation"
-	"github.com/krakenh2020/MPCService/key_management"
 )
 
 // MPCPrime is the prime used in the chosen Shamir secret sharing protocol used in SCALE-MAMBA

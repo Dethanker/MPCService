@@ -1,4 +1,4 @@
-# MPC service ![build and test](https://github.com/krakenh2020/MPCService/actions/workflows/build-and-test.yml/badge.svg)
+# MPC service ![build and test](https://github.com/Dethanker/MPCService/actions/workflows/build-and-test.yml/badge.svg)
 
 MPCService allows deploying a multi-party computation service. It implements Go based services that can
 play a role of an MPC node, or a data provider able to participate in an MPC protocol evaluating a

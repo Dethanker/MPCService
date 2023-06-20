@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Dethanker/MPCService/computation"
+	"github.com/Dethanker/MPCService/data_management"
 	log "github.com/sirupsen/logrus"
-	"github.com/krakenh2020/MPCService/computation"
-	"github.com/krakenh2020/MPCService/data_management"
 )
 
 // Todo: shutdown request, low priority
