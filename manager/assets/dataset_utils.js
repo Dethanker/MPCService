@@ -75,12 +75,12 @@ function load_datasets_table() {
         row = document.createElement("tr");
 
         // Create the table data elements for the species and description columns
-        var checkbox = document.createElement("INPUT");
-        checkbox.type = "checkbox";
-        checkbox.className = "datasets";
-        checkbox.value = i;
+        //var checkbox = document.createElement("INPUT");
+        //checkbox.type = "checkbox";
+        //checkbox.className = "datasets";
+        //checkbox.value = i;
         i = i + 1;
-        var check = document.createElement("td");
+        //var check = document.createElement("td");
         var id = document.createElement("td");
         id.innerHTML = i;
         var name = document.createElement("td");
@@ -101,8 +101,8 @@ function load_datasets_table() {
         time.innerHTML = formattedTime;
         // var cols = document.createElement("td");
         // cols.innerHTML = dataset.cols;
-        var shared_nodes = document.createElement("td");
-        shared_nodes.innerHTML = dataset.shared_with;
+        //var shared_nodes = document.createElement("td");
+        //shared_nodes.innerHTML = dataset.shared_with;
 
         // Add the data elements to the row
         //check.appendChild(checkbox);
