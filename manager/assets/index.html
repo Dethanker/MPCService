@@ -45,9 +45,13 @@
 </body>
 
 <script>
-  var loginButton = document.getElementById('loginbutton');
-loginButton.addEventListener('click', () => {
-  location.assign('home.html');
+document.getElementById("loginbutton").addEventListener("click", function(event){
+    event.preventDefault();
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if (username === "123" && password === "123") {
+        window.location.href = "home.html";
+    }
 });
 </script>
 
