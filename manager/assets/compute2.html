@@ -21,7 +21,15 @@
 <div style="text-align: center; margin-top: 50px; transform: translateX(100px);">
     <span style="margin-right: 200px; font-size: 20px;">1.公私钥生成</span>
     <span id="figure" style="margin-right: 200px; font-size: 20px;">2.参数设置</span>
-    <span style="font-size: 20px;">3.结果查看</span>
+    <script>
+        var Span = document.getElementById("figure");
+Span.style.backgroundColor = "blue";
+Span.style.color = "white";
+Span.style.borderRadius = "10px";
+Span.style.padding = "10px";
+Span.style.display = "inline-block";
+    </script>
+    <span id="result" style="font-size: 20px;">3.结果查看</span>
   </div>
   
   <style>
@@ -459,48 +467,104 @@ cols.add(option);
 </p>
 
 <div style="text-align: center; margin-top: 50px;transform: translateX(125px);">
-    <button id="computeButton" style="background-color: blue; color: white; border-radius: 10px; padding: 10px 20px; font-size: 16px;"  >发起计算</button>
-    </div> 
+  <button id="computeButton" style="background-color: blue; color: white; border-radius: 10px; padding: 10px 20px; font-size: 16px;"  >发起计算</button>
+</div> 
 <script>
-  var button=getElementById("computeButton");
+var combutton=document.getElementById("computeButton");
+
+combutton.addEventListener("click", function() {
+  setTimeout(function() {
+    combutton.innerHTML = "计算中...";
+  var resultSpan = document.getElementById("result");
+resultSpan.style.backgroundColor = "blue";
+resultSpan.style.color = "white";
+resultSpan.style.borderRadius = "10px";
+resultSpan.style.padding = "10px";
+resultSpan.style.display = "inline-block";
+
+var figureSpan = document.getElementById("figure");
+figureSpan.style.backgroundColor = "";
+figureSpan.style.color = "";
+figureSpan.style.borderRadius = "";
+figureSpan.style.padding = "";
+figureSpan.style.display = "";
+
   //mpc_computation();
-  button.addEventListener("click", function() {
-              // 创建一个div元素作为弹出框
-              var popup = document.createElement("div");
-          popup.classList.add("popup");
-        
-          // 创建标题元素
-          var title = document.createElement("h2");
-          title.classList.add("popup-title");
-          title.innerHTML = "节点公钥";
-        
-          // 将标题和其他内容添加到弹出框中
-          popup.appendChild(title);
+        // 创建一个div元素作为弹出框
+        var popup = document.createElement("div");
+        popup.classList.add("popup");
+      
+        // 创建标题元素
+        var title = document.createElement("h2");
+        title.classList.add("popup-title");
+        title.innerHTML = "计算结果";
+      
+        // 将标题和其他内容添加到弹出框中
+        popup.appendChild(title);
 
-          var spacer = document.createElement("div");
-          spacer.classList.add("spacer"); // 添加class名称
-          spacer.style.height = "30px"; // 设置高度
-          popup.appendChild(spacer);
+        var spacer = document.createElement("div");
+        spacer.classList.add("spacer"); // 添加class名称
+        spacer.style.height = "30px"; // 设置高度
+        popup.appendChild(spacer);
+        // 获取单选框的文本内容
+     // 获取单选框元素
+const cols = document.querySelector('select[name="cols"]');
+
+// 获取文本内容并按 ';' 分割
+const textContent = cols.options[cols.selectedIndex].text.split(';');
+
+// 添加每个分割后的文本节点到弹出框中
+textContent.forEach((text, i) => {
+  const node = document.createTextNode(text.trim());
+  popup.appendChild(node);
+  
+  // 如果不是最后一个文本，则添加一个空格
+  if (i < textContent.length - 1) {
+    const spaceNode = document.createTextNode('\u00A0\u00A0\u00A0\u00A0\u00A0');
+    popup.appendChild(spaceNode);
+    
+  }
+});
 
 
 
-          var spacer2 = document.createElement("div");
-          spacer2.classList.add("spacer"); // 添加class名称
-          spacer2.style.height = "30px"; // 设置高度
-          popup.appendChild(spacer2);
-          // 添加确定按钮
-          var btn = document.createElement("button");
-          btn.innerHTML = "确定";
-        
-          // 将确定按钮添加到弹出框中，并添加点击事件监听器
-          popup.appendChild(btn);
-          btn.addEventListener("click", function() {
-            // 关闭弹出框
-            popup.remove();
-          });
-          // 添加弹出框到body元素中
-          document.body.appendChild(popup);
-  });
+
+
+
+
+        var spacer2 = document.createElement("div");
+        spacer2.classList.add("spacer"); // 添加class名称
+        spacer2.style.height = "30px"; // 设置高度
+        popup.appendChild(spacer2);
+        // 添加确定按钮
+        var btn = document.createElement("button");
+        btn.innerHTML = "确定";
+      
+        // 将确定按钮添加到弹出框中，并添加点击事件监听器
+        popup.appendChild(btn);
+        btn.addEventListener("click", function() {
+          // 关闭弹出框
+          popup.remove();
+          var resultSpan = document.getElementById("result");
+resultSpan.style.backgroundColor = "";
+resultSpan.style.color = "";
+resultSpan.style.borderRadius = "";
+resultSpan.style.padding = "";
+resultSpan.style.display = "";
+var fSpan = document.getElementById("figure");
+fSpan.style.backgroundColor = "blue";
+fSpan.style.color = "white";
+fSpan.style.borderRadius = "10px";
+fSpan.style.padding = "10px";
+fSpan.style.display = "inline-block";
+combutton.innerHTML = "发起计算";
+        });
+        // 添加弹出框到body元素中
+        document.body.appendChild(popup);
+
+      }, 10000);
+});
+</script>
 </script>      
   <style type="text/css">
       .blue-button {
@@ -510,16 +574,16 @@ cols.add(option);
     padding: 10px 20px; /* 设置内边距 */
   }
   .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1000px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: inline-block; /* 或者 display: inline-flex; */
+}
   
   .popup-title {
     font-size: 18px;
@@ -572,11 +636,5 @@ cols.add(option);
   background-color: blue;
   color: white;
 }
-#figure {
-  background-color: blue;
-  color: white;
-  border-radius: 10px;
-  padding: 10px;
-  display: inline-block;
-}
+
   </style>

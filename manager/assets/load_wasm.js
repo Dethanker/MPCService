@@ -16,6 +16,7 @@ WebAssembly.instantiateStreaming(fetch("mpc.wasm"), go.importObject).then(
     }
 );
 
+
 async function run() {
     await go.run(inst);
     inst = await WebAssembly.instantiate(mod, go.importObject); // reset instance

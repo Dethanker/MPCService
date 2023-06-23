@@ -5,7 +5,6 @@ import (
 	"math"
 )
 
-// FloatToFixInt changes a float to a fix precision representation of a number used in SCALE-MAMBA
 func FloatToFixInt(x float64) (int64, error) {
 	k := 41
 	f := 20

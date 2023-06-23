@@ -17,7 +17,6 @@ func LogSetUp(logLevel, logFile string) {
 		log.SetLevel(log.ErrorLevel)
 	}
 
-	//file, err := os.Create(logFile)
 	//if err != nil {
 	//	log.Error(err)
 	//}

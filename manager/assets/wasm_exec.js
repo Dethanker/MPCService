@@ -546,6 +546,7 @@
 				return ptr;
 			};
 
+			
 			const argc = this.argv.length;
 
 			const argvPtrs = [];

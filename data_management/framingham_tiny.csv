@@ -10,3 +10,4 @@ male,age,education,currentSmoker,cigsPerDay,BPMeds,prevalentStroke,prevalentHyp,
 1,52,1,0,0,0,0,1,0,260,141.5,89,26.36,76,79,0
 1,43,1,1,30,0,0,1,0,225,162,107,23.61,93,88,0
 1,43,1,1,30,0,0,1,0,225,162,107,23.61,93,-88.001,0
+
