@@ -1,5 +1,6 @@
 version: "3"
 
+
 services:
   mpc_node:
     container_name: mpc_node
