@@ -459,9 +459,85 @@ cols.add(option);
 </p>
 
 <div style="text-align: center; margin-top: 50px;transform: translateX(125px);">
-    <button id="next-button" style="background-color: blue; color: white; border-radius: 10px; padding: 10px 20px; font-size: 16px;" onClick="mpc_computation();" >发起计算</button>
-    </div>       
+    <button id="computeButton" style="background-color: blue; color: white; border-radius: 10px; padding: 10px 20px; font-size: 16px;"  >发起计算</button>
+    </div> 
+<script>
+  var button=getElementById("computeButton");
+  //mpc_computation();
+  button.addEventListener("click", function() {
+              // 创建一个div元素作为弹出框
+              var popup = document.createElement("div");
+          popup.classList.add("popup");
+        
+          // 创建标题元素
+          var title = document.createElement("h2");
+          title.classList.add("popup-title");
+          title.innerHTML = "节点公钥";
+        
+          // 将标题和其他内容添加到弹出框中
+          popup.appendChild(title);
+
+          var spacer = document.createElement("div");
+          spacer.classList.add("spacer"); // 添加class名称
+          spacer.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer);
+
+
+
+          var spacer2 = document.createElement("div");
+          spacer2.classList.add("spacer"); // 添加class名称
+          spacer2.style.height = "30px"; // 设置高度
+          popup.appendChild(spacer2);
+          // 添加确定按钮
+          var btn = document.createElement("button");
+          btn.innerHTML = "确定";
+        
+          // 将确定按钮添加到弹出框中，并添加点击事件监听器
+          popup.appendChild(btn);
+          btn.addEventListener("click", function() {
+            // 关闭弹出框
+            popup.remove();
+          });
+          // 添加弹出框到body元素中
+          document.body.appendChild(popup);
+  });
+</script>      
   <style type="text/css">
+      .blue-button {
+    background-color: blue;
+    color: white;
+    border-radius: 10px; /* 设置圆角半径 */
+    padding: 10px 20px; /* 设置内边距 */
+  }
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .popup button{
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 40px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
   .sidenav {
     height: 100%;
     width: 300px; /* 增加宽度 */
