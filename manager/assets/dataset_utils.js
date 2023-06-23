@@ -15,7 +15,7 @@ function load_datasets_table() {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 1000px;
+      width: 1200px;
       background-color: white;
       border-radius: 10px;
       padding: 20px;
@@ -160,7 +160,7 @@ function load_datasets_table() {
           }
 
           var spacer2 = document.createElement("div");
-          spacer2.classList.add("spacer"); // 添加class名称
+          spacer2.classList.add("spacer2"); // 添加class名称
           spacer2.style.height = "30px"; // 设置高度
           popup.appendChild(spacer2);
           // 添加确定按钮

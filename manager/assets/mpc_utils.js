@@ -361,23 +361,28 @@ function getSelectedValue(className) {
 async function mpc_computation() {
   document.getElementById("errorMsg").style.display = "none";
   // get information about selected nodes
-  var selectedNodesIndexes = getSelectedIndexes("nodes");
+  /*var selectedNodesIndexes = getSelectedIndexes("nodes");
   if (selectedNodesIndexes.length != 3) {
     document.getElementById("errorMsg").innerText = "Error: select 3 nodes.";
     document.getElementById("errorMsg").style.display = "block";
     console.log("select 3 nodes");
     return;
-  }
+  }*/
+
+  
   let allNodes = await getNodes();
   let nodes = [
-    allNodes[selectedNodesIndexes[0]],
-    allNodes[selectedNodesIndexes[1]],
-    allNodes[selectedNodesIndexes[2]],
+    allNodes[0],
+    allNodes[1],
+    allNodes[2],
   ];
   var nodesNames = nodes[0][0] + "," + nodes[1][0] + "," + nodes[2][0];
 
+  var selectElement = document.querySelector('select[name="dataset"]');
+  var selectedIndex = selectElement.selectedIndex;
   // get information about selected nodes
-  var selectedDatasets = getSelectedIndexes("datasets");
+  var selectedDatasets =  [];
+  selectedDatasets.push(selectedIndex);
   if (selectedDatasets.length == 0) {
     document.getElementById("errorMsg").innerText =
       "Error: no dataset selected.";
@@ -419,13 +424,13 @@ async function mpc_computation() {
     console.log("a dataset not shared with the selected nodes");
     return;
   }
-
+//  var selectElement2 = document.querySelector('select[name="program"]');
+  var funcName ="Average"
   // define the name of the function that will be computed
-  var funcName = getSelectedValue("function");
 
   var params = {};
   if (funcName == "k-means") {
-    params["NUM_CLUSTERS"] = document.getElementById("num_clusters").value;
+    params["NUM_CLUSTERS"] = document.querySelector('select[name="kmeans"]').value;
     if ((!(parseInt(params["NUM_CLUSTERS"]) > 1)) || (parseInt(params["NUM_CLUSTERS"]) > 5)) {
       document.getElementById("errorMsg").innerText =
         "Error: input of number of clusters should at least 2 and at most 5.";
