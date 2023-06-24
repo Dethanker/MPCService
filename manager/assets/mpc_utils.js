@@ -733,7 +733,6 @@ async function mpc_computation2() {
       }
       for (let j = 0; j < headers.length; j++) {
         averages[j] /= (rows.length - 1);
-        averages[j] = averages[j].toFixed(3).round();  
       }
 
       // 构建新的CSV内容
@@ -765,9 +764,7 @@ async function mpc_computation2() {
           }
         }
       }
-      for (let j = 0; j < headers.length; j++) {
-        minimums[j] = minimums[j].toFixed(3);
-      }
+ 
   
       // 构建新的CSV内容
       const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${minimums.join(',')}`;
@@ -780,6 +777,36 @@ async function mpc_computation2() {
     });
    }
  
+   if(func=="max"){
+    fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+    .then(response => response.text())
+    .then(text => {
+      const rows = text.split('\n'); 
+      const firstRow = rows[0]; 
+  
+      const headers = firstRow.split(',').map(header => header.trim());
+  
+      const minimums = new Array(headers.length).fill(Number.MAX_SAFE_INTEGER);
+      for (let i = 1; i < rows.length; i++) {
+        const rowValues = rows[i].split(',');
+        for (let j = 0; j < headers.length; j++) {
+          if(parseFloat(rowValues[j]) > minimums[j]){
+              minimums[j] = parseFloat(rowValues[j]);
+          }
+        }
+      }
+
+  
+      // 构建新的CSV内容
+      const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${minimums.join(',')}`;
+  
+      const link = document.createElement('a');
+      link.setAttribute('href', csvContent);
+      link.setAttribute('download', "result.csv");
+  
+      link.click(); // 触发下载
+    });
+   }
 
 
 

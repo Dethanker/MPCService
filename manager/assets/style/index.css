@@ -261,14 +261,23 @@ table {
   overflow: hidden;
 }
 .datasets tbody {
+  display: flex;  
+  flex-wrap: wrap;  
+  max-width: 100%; 
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1607843137);
 }
 .datasets tbody tr {
+  display: flex;  
+  flex-wrap: wrap;  
+  max-width: 100%; 
   background: transparent;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1607843137);
 }
 .datasets tbody tr td {
+  display: flex;  
+  flex-wrap: wrap;  
+  max-width: 100%; 
   padding: 12px 27px;
   font-size: 20px;
   font-family: "Roboto", sans-serif;
@@ -277,6 +286,7 @@ table {
   border-radius: 10px;
 }
 .datasets tbody tr td input {
+  
   width: 19px;
   height: 19px;
   background: #ffffff 0% 0% no-repeat padding-box;
