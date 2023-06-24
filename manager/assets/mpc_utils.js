@@ -721,14 +721,14 @@ async function mpc_computation2() {
    
        const link = document.createElement('a');
        link.setAttribute('href', csvContent);
-       link.setAttribute('download', dsname);
+       link.setAttribute('download', "result.csv");
    
        link.click(); // 触发下载
      });
 
 
 
-
+var csvFilePath = "./data_provider/datasets/dataset_test1.csv";
 
   progressBar.value = 100;
   document.getElementById("errorMsg").innerText =
