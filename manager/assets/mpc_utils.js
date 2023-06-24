@@ -713,10 +713,10 @@ async function mpc_computation2() {
    
 
 
-   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/dataset_test3.csv)
+   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/dataset_test3.csv`)
      .then(response => response.text())
      .then(text => {
-       const rows = text.split('\n'); // 将文件文本按行分割
+       const rows = text.split('\n'); // 将文件文本按行分割S
        const firstRow = rows[0]; // 获取第一行
        const csvContent = `data:text/csv;charset=utf-8,${encodeURIComponent(firstRow)};`; // 创建包含第一行的CSV字符串
    
