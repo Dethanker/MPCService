@@ -705,7 +705,7 @@ async function mpc_computation2() {
 
   // interpret the result
   let csvText = VecToCsvText(res, response[0].Cols, funcName);
-  // console.log("result", csvText)
+   console.log("result", csvText)
 
   download(csvText, "result.csv");
 

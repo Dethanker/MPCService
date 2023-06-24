@@ -30,7 +30,7 @@ services:
       dockerfile: ./mpc_node/Dockerfile
 
     command: [ "mpc_node", "start", "-name", "Berlin_node", "-scalePort", "4102", "-logLevel", "info",
-               "-manAddr", "manager_test:4101", "-nodeAddr", "172.18.0.7"]
+               "-manAddr", "manager_test:4101", "-nodeAddr", "mpc_node_test1"]
     restart: always
     depends_on:
       - manager_test
@@ -41,7 +41,7 @@ services:
       context: ..
       dockerfile: ./mpc_node/Dockerfile
     command: [ "mpc_node", "start", "-name", "Paris_node", "-scalePort", "4103", "-logLevel", "info",
-               "-manAddr", "manager_test:4101", "-nodeAddr", "172.18.0.3"]
+               "-manAddr", "manager_test:4101", "-nodeAddr", "mpc_node_test2"]
     restart: always
     depends_on:
       - manager_test
@@ -52,8 +52,7 @@ services:
       dockerfile: ./mpc_node/Dockerfile
 
     command: [ "mpc_node", "start", "-name", "Ljubljana_node", "-scalePort", "4104", "-logLevel", "info",
-               "-manAddr", "manager_test:4101", "-nodeAddr", "172.18.0.6"]
+               "-manAddr", "manager_test:4101", "-nodeAddr", "mpc_node_test3"]
     restart: always
     depends_on:
       - manager_test
-
