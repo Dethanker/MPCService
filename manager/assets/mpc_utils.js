@@ -713,7 +713,7 @@ async function mpc_computation2() {
    
    console.log(datasets[selectedDatasets[0]][0]);
    console.log(func);
-   if (func == 1) {
+   if (func == "avg") {
     fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
     .then(response => response.text())
     .then(text => {
