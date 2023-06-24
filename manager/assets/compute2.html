@@ -71,7 +71,7 @@ Span.style.display = "inline-block";
       <thead>
         <tr>
           <th></th>
-          <th>Nodes</th>
+          <th>节点</th>
 
         </tr>
       </thead>
@@ -121,7 +121,7 @@ Span.style.display = "inline-block";
       <thead>
         <tr>
           <th> </th>
-          <th>Dataset</th>
+          <th>数据集</th>
 
         </tr>
       </thead>
@@ -170,9 +170,9 @@ Span.style.display = "inline-block";
 
 
 
-
-    <div class="nodes-select-outer-wrap">
-      <div class="node-select-wrap">
+<div style="  font-size: 20px;">
+    <div class="nodes-select-outer-wrap" style="margin-left: 300px; ">
+      <div class="node-select-wrap" >
         <input type="checkbox" class="function" id="avg" name="contact" value="avg">
         <label for="avg">Average</label>
       </div>
@@ -189,11 +189,11 @@ Span.style.display = "inline-block";
         <input type="checkbox" class="function" id="k-means" name="contact" value="k-means">
         <label for="k-means">k-means</label>
 
-        (Number of clusters: <input class="num_clusters" type="text" id="num_clusters" name="num_clusters">)
+        (K=<input class="num_clusters" type="text" id="num_clusters" name="num_clusters">)
       </div>
 
       <button class="request-btn" onClick="mpc_computation2();" id="addButton">
-        Request the MPC computation.
+        发起计算
       </button>
       <div class="error-msg" id="errorMsg" style="display:none"></div>
 
@@ -201,6 +201,7 @@ Span.style.display = "inline-block";
         <progress id="progressBar" max="100" value="0"></progress>
       </p>
     </div>
+  </div>
   <style type="text/css">
       .blue-button {
     background-color: blue;
@@ -225,8 +226,15 @@ Span.style.display = "inline-block";
     font-weight: bold;
     margin-bottom: 10px;
   }
+  .request-btn {
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 40px;
 
-  .popup button{
+  }
+  .popup button {
     background-color: blue;
     color: white;
     border-radius: 10px;
