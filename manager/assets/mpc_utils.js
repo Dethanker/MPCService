@@ -705,15 +705,27 @@ async function mpc_computation2() {
 
   // interpret the result
   let csvText = VecToCsvText(res, response[0].Cols, funcName);
-   console.log("result", csvText)
 
 
-   var dsname = getSelectedValue("datasets");
-   console.log(dsname)
-   console.log(dsname[0])
+   const checkboxes = document.querySelectorAll(".datasets");
+   var dsname;
+   // 迭代复选框，查找被选中的行
+   for (let i = 0; i < checkboxes.length; i++) {
+     const checkbox = checkboxes[i];
+     if (checkbox.checked) {
+       // 找到被选中的行
+       const row = checkbox.parentNode.parentNode;
+       // 获取第一个单元格的文本
+       dsname= row.querySelector("td:first-child").textContent;
+       console.log(dsname);
+       // 停止迭代
+       break;
+     }
+   }
+   
 
 
-   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${dsname[0]}`)
+   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${dsname}`)
      .then(response => response.text())
      .then(text => {
        const rows = text.split('\n'); // 将文件文本按行分割S
