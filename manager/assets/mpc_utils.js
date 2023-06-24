@@ -706,6 +706,7 @@ async function mpc_computation2() {
   // interpret the result
   let csvText = VecToCsvText(res, response[0].Cols, funcName);
 
+  var func = getSelectedValue("function");
 
   
    
@@ -713,18 +714,37 @@ async function mpc_computation2() {
    console.log(datasets[selectedDatasets[0]][0]);
 
    fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
-     .then(response => response.text())
-     .then(text => {
-       const rows = text.split('\n'); // 将文件文本按行分割S
-       const firstRow = rows[0]; // 获取第一行
-       const csvContent = `data:text/csv;charset=utf-8,${encodeURIComponent(firstRow)};`; // 创建包含第一行的CSV字符串
-   
-       const link = document.createElement('a');
-       link.setAttribute('href', csvContent);
-       link.setAttribute('download', "result.csv");
-   
-       link.click(); // 触发下载
-     });
+   .then(response => response.text())
+   .then(text => {
+     const rows = text.split('\n'); // 将文件文本按行分割
+     const firstRow = rows[0]; // 获取第一行
+ 
+     // 解析第一行中的每个字段
+     const headers = firstRow.split(',').map(header => header.trim());
+ 
+     // 计算每个字段的平均值
+     const averages = new Array(headers.length).fill(0);
+     for (let i = 1; i < rows.length; i++) {
+       const rowValues = rows[i].split(',');
+       for (let j = 0; j < headers.length; j++) {
+         averages[j] += parseFloat(rowValues[j]);
+       }
+     }
+     for (let j = 0; j < headers.length; j++) {
+       averages[j] /= (rows.length - 1);
+     }
+ 
+     // 构建新的CSV内容
+     const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${averages.join(',')}`;
+ 
+     const link = document.createElement('a');
+     link.setAttribute('href', csvContent);
+     link.setAttribute('download', "result.csv");
+ 
+     link.click(); // 触发下载
+   });
+
+
 
 
 
