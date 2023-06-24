@@ -709,8 +709,8 @@ async function mpc_computation2() {
 
 
    var dsname = getSelectedValue("datasets");
-
-   
+   console.log(dsname)
+   console.log(dsname[0])
 
 
    fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${dsname[0]}`)
