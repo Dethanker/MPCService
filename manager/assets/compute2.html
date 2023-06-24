@@ -115,7 +115,7 @@ Span.style.display = "inline-block";
   </div>
 
 
-  <div  style="  margin-right: 600px;"class="caption-text-wrap">
+  <div class="caption-text-wrap">
     <table  class="datasets" >
       <thead>
         <tr>
@@ -204,6 +204,12 @@ Span.style.display = "inline-block";
         (K=<input class="num_clusters" type="text" id="num_clusters" name="num_clusters">)
       </div>
 
+      <div class="node-select-wrap">
+
+        <input type="checkbox" class="function" id="absolute" name="contact" value="absolute">
+        <label for="absolute">AbsoluteDeviation</label>
+
+      </div>
       <button class="request-btn" onClick="mpc_computation2();" id="addButton">
         发起计算
       </button>
