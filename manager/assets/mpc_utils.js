@@ -708,12 +708,12 @@ async function mpc_computation2() {
    console.log("result", csvText)
 
 
-
+   var dsname = getSelectedValue("datasets");
 
    
 
 
-   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${selectedDatasets[0][0]}`)
+   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${dsname[0]}`)
      .then(response => response.text())
      .then(text => {
        const rows = text.split('\n'); // 将文件文本按行分割S
