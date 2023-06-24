@@ -238,6 +238,8 @@ table {
 
 .datasets {
   width: 990px;
+  margin-left: 300px;
+  margin-top: 50px;
 }
 .datasets thead {
   border: none;
