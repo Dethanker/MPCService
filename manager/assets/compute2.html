@@ -65,19 +65,57 @@ Span.style.display = "inline-block";
 
 
 
-  <table class="datasets">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nodes</th>
-        <th>Address</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody id="nodes">
-    </tbody>
-  </table>
-  <script> load_nodes_table2() </script>
+  <div class="caption-text-wrap">
+    <table class="datasets">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nodes</th>
+          <th>Address</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody id="nodes">
+      </tbody>
+    </table>
+    <script>
+       nodesTable = document.querySelector("#nodes");
+  let i = 0;
+  fetch("/nodes")
+    .then((response) => response.json())
+    .then((nodesList) => {
+      //Once we fetch the list, we iterate over it
+      nodesList.forEach((node) => {
+        // console.log(node)
+        // Create the table row
+        row = document.createElement("tr");
+
+        // Create the table data elements for the species and description columns
+        var checkbox = document.createElement("INPUT");
+        checkbox.type = "checkbox";
+        checkbox.className = "nodes";
+        checkbox.value = i;
+        i = i + 1;
+        var check = document.createElement("td");
+        var name = document.createElement("td");
+        name.innerHTML = node.name;
+        var location = document.createElement("td");
+        location.innerHTML = node.address;
+        var description = document.createElement("td");
+        description.innerHTML = node.description;
+
+        // Add the data elements to the row
+        check.appendChild(checkbox);
+        row.appendChild(check);
+        row.appendChild(name);
+        row.appendChild(location);
+        row.appendChild(description);
+
+        nodesTable.appendChild(row);
+      });
+    }); 
+    </script>
+  </div>
 
   <style type="text/css">
       .blue-button {
