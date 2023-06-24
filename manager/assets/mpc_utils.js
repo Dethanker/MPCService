@@ -709,16 +709,13 @@ async function mpc_computation2() {
 
 
    var dsname = getSelectedValue("datasets");
-   const url = `https://github.com/Dethanker/MPCService/tree/master/data_provider/datasets/${dsname}`;
-
+   const url = `https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${dsname}`;
+   
    fetch(url)
-     .then(response => response.text())
-     .then(csvText => {
-       const lines = csvText.trim().split("\n");
-       const firstLine = lines[0];
-       download(firstLine, "result.csv");
-     });
-
+      .then(response => response.text())
+      .then(csvText => {
+          download(csvText, "result.csv");
+      });
 
 
 
