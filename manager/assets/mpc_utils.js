@@ -777,37 +777,74 @@ async function mpc_computation2() {
     });
    }
  
-   if(func=="max"){
+   if (func == "max") {
     fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
-    .then(response => response.text())
-    .then(text => {
-      const rows = text.split('\n'); 
-      const firstRow = rows[0]; 
-  
-      const headers = firstRow.split(',').map(header => header.trim());
-  
-      const minimums = new Array(headers.length).fill(Number.MAX_SAFE_INTEGER);
-      for (let i = 1; i < rows.length; i++) {
-        const rowValues = rows[i].split(',');
-        for (let j = 0; j < headers.length; j++) {
-          if(parseFloat(rowValues[j]) > minimums[j]){
-              minimums[j] = parseFloat(rowValues[j]);
-          }
-        }
+        .then(response => response.text())
+        .then(text => {
+            const rows = text.split('\n');
+            const firstRow = rows[0];
+
+            const headers = firstRow.split(',').map(header => header.trim());
+
+            const maximums = new Array(headers.length).fill(Number.MIN_SAFE_INTEGER); // 初始化为最小可能的整数值
+            for (let i = 1; i < rows.length; i++) {
+                const rowValues = rows[i].split(',');
+                for (let j = 0; j < headers.length; j++) {
+                    if (parseFloat(rowValues[j]) > maximums[j]) { // 注意这里是比较操作符的修改
+                        maximums[j] = parseFloat(rowValues[j]);
+                    }
+                }
+            }
+
+
+            // 构建新的CSV内容
+            const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${maximums.join(',')}`;
+
+            const link = document.createElement('a');
+            link.setAttribute('href', csvContent);
+            link.setAttribute('download', "result.csv");
+
+            link.click(); // 触发下载
+        });
+}
+
+if (func == "absolute") {
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n');
+    const firstRow = rows[0];
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const deviations = new Array(headers.length).fill(0);
+    const averages = new Array(headers.length).fill(0);
+
+    for (let i = 1; i < rows.length; i++) {
+      const rowValues = rows[i].split(',');
+      for (let j = 0; j < headers.length; j++) {
+        // 计算平均值
+        averages[j] += parseFloat(rowValues[j]);
+
+        // 计算绝对偏差
+        deviations[j] += Math.abs(parseFloat(rowValues[j]) - averages[j]);
       }
+    }
 
-  
-      // 构建新的CSV内容
-      const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${minimums.join(',')}`;
-  
-      const link = document.createElement('a');
-      link.setAttribute('href', csvContent);
-      link.setAttribute('download', "result.csv");
-  
-      link.click(); // 触发下载
-    });
-   }
+    // 计算绝对偏差结果
+    for (let j = 0; j < headers.length; j++) {
+      deviations[j] /= (rows.length - 1);
+    }
 
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${deviations.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // 触发下载
+  });
+}
 
 
 
