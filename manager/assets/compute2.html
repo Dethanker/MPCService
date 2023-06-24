@@ -108,13 +108,74 @@ Span.style.display = "inline-block";
         check.appendChild(checkbox);
         row.appendChild(check);
         row.appendChild(name);
-
-
         nodesTable.appendChild(row);
       });
     }); 
     </script>
   </div>
+
+
+  <div class="node-wrap">
+    <h2> Datasets </h2>
+
+    <h4 class="available-detaset"> Available datasets </h4>
+    <table class="datasets">
+      <thead>
+        <tr>
+          <th> </th>
+          <th>Dataset</th>
+          <th>Data entries (size)</th>
+          <th>Shared with</th>
+        </tr>
+      </thead>
+      <tbody id="datasets">
+      </tbody>
+    </table>
+
+    <script>
+        datasetsTable = document.querySelector("#datasets");
+   let i2 = 0;
+// fetch("/datasets")
+      fetch("/datasets")
+    .then((response) => response.json())
+    .then((datasetsList) => {
+      //Once we fetch the list, we iterate over it
+      datasetsList.forEach((dataset) => {
+        // console.log(dataset)
+        // Create the table row
+        row = document.createElement("tr");
+
+        // Create the table data elements for the species and description columns
+        var checkbox = document.createElement("INPUT");
+        checkbox.type = "checkbox";
+        checkbox.className = "datasets";
+        checkbox.value = i2;
+        i2 = i2 + 1;
+        var check = document.createElement("td");
+
+        var name = document.createElement("td");
+        name.innerHTML = dataset.name;
+        var size = document.createElement("td");
+        size.innerHTML = dataset.size;
+        // var cols = document.createElement("td");
+        // cols.innerHTML = dataset.cols;
+        var shared_nodes = document.createElement("td");
+        shared_nodes.innerHTML = dataset.shared_with;
+
+        // Add the data elements to the row
+        check.appendChild(checkbox);
+        row.appendChild(check);
+        row.appendChild(name);
+        row.appendChild(size);
+        // row.appendChild(cols)
+        row.appendChild(shared_nodes);
+
+        datasetsTable.appendChild(row);
+      });
+    }); 
+    </script>
+    </div>
+
 
   <style type="text/css">
       .blue-button {
