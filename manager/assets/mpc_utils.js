@@ -709,19 +709,15 @@ async function mpc_computation2() {
 
 
    var dsname = getSelectedValue("datasets");
-   fetch(`https://github.com/Dethanker/MPCService/tree/master/data_provider/datasets/${dsname}`)
-   .then(response => response.text())
-   .then(text => {
-     const rows = text.split('\n'); // 将文件文本按行分割
-     const firstRow = rows[0]; // 获取第一行
-     const csvContent = `data:text/csv;charset=utf-8,${encodeURIComponent(firstRow)};`; // 创建包含第一行的CSV字符串
- 
-     const link = document.createElement('a');
-     link.setAttribute('href', csvContent);
-     link.setAttribute('download', dsname);
- 
-     link.click(); // 触发下载
-   });
+   const url = `https://github.com/Dethanker/MPCService/tree/master/data_provider/datasets/${dsname}`;
+
+   fetch(url)
+     .then(response => response.text())
+     .then(csvText => {
+       const lines = csvText.trim().split("\n");
+       const firstLine = lines[0];
+       download(firstLine, "result.csv");
+     });
 
 
 
