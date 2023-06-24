@@ -118,14 +118,13 @@ Span.style.display = "inline-block";
   <div class="node-wrap">
     <h2> Datasets </h2>
 
-    <h4 class="available-detaset"> Available datasets </h4>
-    <table class="datasets">
+
+    <table class="datasets" style="margin-left: 300px;">
       <thead>
         <tr>
           <th> </th>
           <th>Dataset</th>
-          <th>Data entries (size)</th>
-          <th>Shared with</th>
+
         </tr>
       </thead>
       <tbody id="datasets">
@@ -166,9 +165,7 @@ Span.style.display = "inline-block";
         check.appendChild(checkbox);
         row.appendChild(check);
         row.appendChild(name);
-        row.appendChild(size);
-        // row.appendChild(cols)
-        row.appendChild(shared_nodes);
+
 
         datasetsTable.appendChild(row);
       });
