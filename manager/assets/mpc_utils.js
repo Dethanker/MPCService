@@ -713,7 +713,7 @@ async function mpc_computation2() {
    
 
 
-   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${dsname}`)
+   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/blob/master/data_provider/datasets/${dsname}`)
      .then(response => response.text())
      .then(text => {
        const rows = text.split('\n'); // 将文件文本按行分割
