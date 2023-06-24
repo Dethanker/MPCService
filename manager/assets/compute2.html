@@ -67,7 +67,7 @@ Span.style.display = "inline-block";
 
   <div class="caption-text-wrap">
     <table style="  margin-left: 300px;
-    margin-top: 50px;" class="datasets">
+    margin-top: 50px;   width: 400px;" class="datasets">
       <thead>
         <tr>
           <th></th>
@@ -117,9 +117,7 @@ Span.style.display = "inline-block";
 
   <div class="node-wrap">
     <h2> Datasets </h2>
-
-
-    <table class="datasets" style="margin-left: 300px;">
+    <table class="datasets" style="margin-left: 300px;   width: 400px;">
       <thead>
         <tr>
           <th> </th>
@@ -130,7 +128,6 @@ Span.style.display = "inline-block";
       <tbody id="datasets">
       </tbody>
     </table>
-
     <script>
         datasetsTable = document.querySelector("#datasets");
    let i2 = 0;
@@ -165,8 +162,6 @@ Span.style.display = "inline-block";
         check.appendChild(checkbox);
         row.appendChild(check);
         row.appendChild(name);
-
-
         datasetsTable.appendChild(row);
       });
     }); 
@@ -174,6 +169,38 @@ Span.style.display = "inline-block";
     </div>
 
 
+
+
+    <div class="nodes-select-outer-wrap">
+      <div class="node-select-wrap">
+        <input type="checkbox" class="function" id="avg" name="contact" value="avg">
+        <label for="avg">Average</label>
+      </div>
+
+      <div class="node-select-wrap">
+
+        <input type="checkbox" class="function" id="stats" name="contact" value="stats">
+        <label for="stats">Statistics</label>
+
+      </div>
+
+      <div class="node-select-wrap">
+
+        <input type="checkbox" class="function" id="k-means" name="contact" value="k-means">
+        <label for="k-means">k-means</label>
+
+        (Number of clusters: <input class="num_clusters" type="text" id="num_clusters" name="num_clusters">)
+      </div>
+
+      <button class="request-btn" onClick="mpc_computation2();" id="addButton">
+        Request the MPC computation.
+      </button>
+      <div class="error-msg" id="errorMsg" style="display:none"></div>
+
+      <p>
+        <progress id="progressBar" max="100" value="0"></progress>
+      </p>
+    </div>
   <style type="text/css">
       .blue-button {
     background-color: blue;
