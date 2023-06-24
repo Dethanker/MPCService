@@ -722,7 +722,7 @@ async function mpc_computation2() {
      // 解析第一行中的每个字段
      const headers = firstRow.split(',').map(header => header.trim());
  
-     // 计算每个字段的平均值
+     // 计算每个字段的平均值并保留三位小数
      const averages = new Array(headers.length).fill(0);
      for (let i = 1; i < rows.length; i++) {
        const rowValues = rows[i].split(',');
@@ -732,6 +732,7 @@ async function mpc_computation2() {
      }
      for (let j = 0; j < headers.length; j++) {
        averages[j] /= (rows.length - 1);
+       averages[j] = averages[j].toFixed(3); // 保留三位小数
      }
  
      // 构建新的CSV内容
@@ -743,6 +744,7 @@ async function mpc_computation2() {
  
      link.click(); // 触发下载
    });
+ 
 
 
 
