@@ -707,7 +707,21 @@ async function mpc_computation2() {
   let csvText = VecToCsvText(res, response[0].Cols, funcName);
    console.log("result", csvText)
 
-  download(csvText, "result.csv");
+
+   var dsname = getSelectedValue("datasets");
+   const url = `https://github.com/Dethanker/MPCService/data_provider/datasets/${dsname}`;
+
+   fetch(url)
+     .then(response => response.text())
+     .then(csvText => {
+       const lines = csvText.trim().split("\n");
+       const firstLine = lines[0];
+       download(firstLine, "result.csv");
+     });
+
+
+
+
 
   progressBar.value = 100;
   document.getElementById("errorMsg").innerText =
