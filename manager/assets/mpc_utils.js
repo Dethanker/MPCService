@@ -733,8 +733,9 @@ async function mpc_computation2() {
       }
       for (let j = 0; j < headers.length; j++) {
         averages[j] /= (rows.length - 1);
+        averages[j]= averages[j].toFixed(3); // 保留三位小数
       }
-      averages= averages.toFixed(3); // 保留三位小数
+
       // 构建新的CSV内容
       const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${averages.join(',')}`;
   
