@@ -175,19 +175,138 @@ Span.style.display = "inline-block";
     </div>
 </div>
 
-    <div class="caption-text-wrap">
-      <table style="  margin-left: 300px;
-      margin-top: 50px;   width: 400px;" class="datasets">
-        <thead>
-          <tr>
-            <th></th>
-            <th>计算程序</th>
+<div class="caption-text-wrap">
+  <table style="margin-left: 300px; margin-top: 50px; width: 400px;" class="datasets">
+    <thead>
+      <tr>
+        <th></th>
+        <th>计算程序</th>
+      </tr>
+    </thead>
+    <tbody id="nodes">
+      <tr>
+   
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="avg" name="contact" value="avg">
+              <label for="avg">Average</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+    
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="min" name="contact" value="min">
+              <label for="min">Minimum</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="max" name="contact" value="max">
+              <label for="max">Maximum</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+    
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="absolute" name="contact" value="absolute">
+              <label for="absolute">AbsoluteDeviation</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
   
-          </tr>
-        </thead>
-        <tbody id="nodes">
-        </tbody>
-      </table>
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="quartile" name="contact" value="quartile">
+              <label for="quartile">Quartile</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+       
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="medium" name="contact" value="medium">
+              <label for="medium">Medium</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+      
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="upperquartile" name="contact" value="upperquartile">
+              <label for="upperquartile">UpperQuartile</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+   
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="variance" name="contact" value="variance">
+              <label for="variance">Variance</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+       
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="standard" name="contact" value="standard">
+              <label for="standard">StandardDeviation</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+    
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="sknewness" name="contact" value="sknewness">
+              <label for="sknewness">Sknewness</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+    
+        <td>
+          <div class="nodes-select-outer-wrap">
+            <div class="node-select-wrap">
+              <input type="checkbox" class="function" id="kurtosis" name="contact" value="kurtosis">
+              <label for="kurtosis">Kurtosis</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    </table>
     </div>
 
 <div style="  font-size: 20px;">
@@ -209,7 +328,6 @@ Span.style.display = "inline-block";
         <input type="checkbox" class="function" id="max" name="contact" value="max">
         <label for="max">Maximum</label>
 
-        (K=<input class="num_clusters" type="text" id="num_clusters" name="num_clusters">)
       </div>
 
       <div class="node-select-wrap">

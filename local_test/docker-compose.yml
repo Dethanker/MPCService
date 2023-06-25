@@ -56,3 +56,14 @@ services:
     restart: always
     depends_on:
       - manager_test
+  mpc_node_test4:
+    container_name: mpc_node_test4
+    build:
+      context: ..
+      dockerfile: ./mpc_node/Dockerfile
+
+    command: [ "mpc_node", "start", "-name", "Rome_node", "-scalePort", "4105", "-logLevel", "info",
+               "-manAddr", "manager_test:4101", "-nodeAddr", "mpc_node_test4"]
+    restart: always
+    depends_on:
+      - manager_test

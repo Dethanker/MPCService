@@ -578,12 +578,7 @@ async function mpc_computation2() {
   document.getElementById("errorMsg").style.display = "none";
   // get information about selected nodes
   var selectedNodesIndexes = getSelectedIndexes("nodes");
-  if (selectedNodesIndexes.length != 3) {
-    document.getElementById("errorMsg").innerText = "Error: select 3 nodes.";
-    document.getElementById("errorMsg").style.display = "block";
-    console.log("select 3 nodes");
-    return;
-  }
+
   let allNodes = await getNodes();
   let nodes = [
     allNodes[selectedNodesIndexes[0]],
@@ -1090,7 +1085,8 @@ if (func == "absolute") {
       const mean = sumValues[j] / n;
       const variance = (sumSquares[j] / n) - Math.pow(mean, 2);
       const stdDev = Math.sqrt(variance);
-      const skewness = ((sumCubes[j] / n) - (3 * mean * sumSquares[j] / n) + (2 * Math.pow(mean, 3))) / Math.pow(stdDev, 3);
+      const skewness = ((sumCubes[j] / n) - (3 * mean * sumSquares[j] / n) + (2 * Math.pow(mean, 3))) /
+      (Math.pow(variance, 1.5) * (n / (n - 1)) * Math.sqrt((n - 2) / (n + 1)));
       skewnesses[j] = skewness.toFixed(3);
     }
 
