@@ -115,20 +115,26 @@ Span.style.display = "inline-block";
   </div>
 
 
-  <div class="caption-text-wrap">
-    <table  class="datasets" >
-      <thead>
-        <tr>
-          <th> </th>
-          <th>数据集</th>
+  <div class="node-outer-wrap">
 
-        </tr>
-      </thead>
-      <tbody id="datasets">
-        <td>dd</td>
-      </tbody>
-    </table>
-    <script>
+    <div class="node-wrap">
+      <h2> Datasets </h2>
+
+      <h4 class="available-detaset"> Available datasets </h4>
+      <table class="datasets">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>Dataset</th>
+            <th>Data entries (size)</th>
+            <th>Shared with</th>
+          </tr>
+        </thead>
+        <tbody id="datasets">
+        </tbody>
+      </table>
+
+      <script> 
         datasetsTable = document.querySelector("#datasets");
    let i2 = 0;
 // fetch("/datasets")
@@ -167,6 +173,7 @@ Span.style.display = "inline-block";
     }); 
     </script>
     </div>
+</div>
 
     <div class="caption-text-wrap">
       <table style="  margin-left: 300px;

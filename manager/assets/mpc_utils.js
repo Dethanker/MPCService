@@ -669,7 +669,7 @@ async function mpc_computation2() {
 
   var msg = {
     NodesNames: nodesNames,
-    Program: funcName,
+    Program: "avg",
     DatasetNames: datasetNames,
     ReceiverPubKey: pubKey,
     Params: JSON.stringify(params),
