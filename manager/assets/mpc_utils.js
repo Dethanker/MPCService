@@ -637,7 +637,7 @@ async function mpc_computation2() {
   }
 
   // define the name of the function that will be computed
-  var funcName = getSelectedValue("function");
+  var funcName = "avg";
 
   var params = {};
   if (funcName == "k-means") {
@@ -669,7 +669,7 @@ async function mpc_computation2() {
 
   var msg = {
     NodesNames: nodesNames,
-    Program: "avg",
+    Program: funcName,
     DatasetNames: datasetNames,
     ReceiverPubKey: pubKey,
     Params: JSON.stringify(params),
@@ -704,7 +704,7 @@ async function mpc_computation2() {
   );
 
   // interpret the result
-  let csvText = VecToCsvText(res, response[0].Cols, funcName);
+  //let csvText = VecToCsvText(res, response[0].Cols, funcName);
 
   var func = getSelectedValue("function");
 
