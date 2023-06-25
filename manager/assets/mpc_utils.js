@@ -709,7 +709,7 @@ async function mpc_computation2() {
   var func = getSelectedValue("function");
 
   
-   
+
    
    console.log(datasets[selectedDatasets[0]][0]);
    console.log(func);
@@ -717,13 +717,13 @@ async function mpc_computation2() {
     fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
     .then(response => response.text())
     .then(text => {
-      const rows = text.split('\n'); // 将文件文本按行分割
-      const firstRow = rows[0]; // 获取第一行
+      const rows = text.split('\n'); 
+      const firstRow = rows[0]; 
   
-      // 解析第一行中的每个字段
+
       const headers = firstRow.split(',').map(header => header.trim());
   
-      // 计算每个字段的平均值并保留三位小数
+   
       const averages = new Array(headers.length).fill(0);
       for (let i = 1; i < rows.length; i++) {
         const rowValues = rows[i].split(',');
@@ -735,14 +735,14 @@ async function mpc_computation2() {
         averages[j] /= (rows.length - 1);
       }
 
-      // 构建新的CSV内容
+ 
       const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${averages.join(',')}`;
   
       const link = document.createElement('a');
       link.setAttribute('href', csvContent);
       link.setAttribute('download', "result.csv");
   
-      link.click(); // 触发下载
+      link.click(); 
     });
    }
 
@@ -766,14 +766,14 @@ async function mpc_computation2() {
       }
  
   
-      // 构建新的CSV内容
+      
       const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${minimums.join(',')}`;
   
       const link = document.createElement('a');
       link.setAttribute('href', csvContent);
       link.setAttribute('download', "result.csv");
   
-      link.click(); // 触发下载
+      link.click(); 
     });
    }
  
@@ -786,25 +786,25 @@ async function mpc_computation2() {
 
             const headers = firstRow.split(',').map(header => header.trim());
 
-            const maximums = new Array(headers.length).fill(Number.MIN_SAFE_INTEGER); // 初始化为最小可能的整数值
+            const maximums = new Array(headers.length).fill(Number.MIN_SAFE_INTEGER); 
             for (let i = 1; i < rows.length; i++) {
                 const rowValues = rows[i].split(',');
                 for (let j = 0; j < headers.length; j++) {
-                    if (parseFloat(rowValues[j]) > maximums[j]) { // 注意这里是比较操作符的修改
+                    if (parseFloat(rowValues[j]) > maximums[j]) { 
                         maximums[j] = parseFloat(rowValues[j]);
                     }
                 }
             }
 
 
-            // 构建新的CSV内容
+     
             const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${maximums.join(',')}`;
 
             const link = document.createElement('a');
             link.setAttribute('href', csvContent);
             link.setAttribute('download', "result.csv");
 
-            link.click(); // 触发下载
+            link.click(); 
         });
 }
 
@@ -823,15 +823,14 @@ if (func == "absolute") {
     for (let i = 1; i < rows.length; i++) {
       const rowValues = rows[i].split(',');
       for (let j = 0; j < headers.length; j++) {
-        // 计算平均值
+
         averages[j] += parseFloat(rowValues[j]);
 
-        // 计算绝对偏差
+
         deviations[j] += Math.abs(parseFloat(rowValues[j]) - averages[j]);
       }
     }
 
-    // 计算绝对偏差结果
     for (let j = 0; j < headers.length; j++) {
       deviations[j] /= (rows.length - 1);
     }
@@ -841,16 +840,321 @@ if (func == "absolute") {
     const link = document.createElement('a');
     link.setAttribute('href', csvContent);
     link.setAttribute('download', "result.csv");
-
+    setTimeout(function() {
+      console.log("Hello, world!");
+    }, 10000);
     link.click(); // 触发下载
   });
 }
 
+ if(func=="quartile"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const q1Values = new Array(headers.length).fill(0);
+    for (let j = 0; j < headers.length; j++) {
+      const columnData = [];
+      for (let i = 1; i < rows.length; i++) {
+        const rowValues = rows[i].split(',');
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          columnData.push(parseFloat(rowValues[j]));
+        }
+      }
+      // Sort the column data in ascending order
+      columnData.sort((a, b) => a - b);
+
+      // Calculate the index of Q1 in the sorted column data
+      const q1Index = Math.floor(columnData.length / 4);
+
+      // Calculate the Q1 value for the column
+      q1Values[j] = columnData[q1Index];
+    }
+
+    // Construct the new CSV content with Q1 values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${q1Values.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+ }
+
+ if(func=="medium"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const medianValues = new Array(headers.length).fill(0);
+    for (let j = 0; j < headers.length; j++) {
+      const columnData = [];
+      for (let i = 1; i < rows.length; i++) {
+        const rowValues = rows[i].split(',');
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          columnData.push(parseFloat(rowValues[j]));
+        }
+      }
+      // Sort the column data in ascending order
+      columnData.sort((a, b) => a - b);
+
+      // Calculate the median value for the column
+      const n = columnData.length;
+      const medianIndex = Math.floor(n / 2);
+      medianValues[j] = n % 2 === 0 ? (columnData[medianIndex - 1] + columnData[medianIndex]) / 2 : columnData[medianIndex];
+    }
+
+    // Construct the new CSV content with median values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${medianValues.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+ }
 
 
+ if(func=="upperquartile"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
 
-var csvFilePath = "./data_provider/datasets/dataset_test1.csv";
+    const headers = firstRow.split(',').map(header => header.trim());
 
+    const q3Values = new Array(headers.length).fill(0);
+    for (let j = 0; j < headers.length; j++) {
+      const columnData = [];
+      for (let i = 1; i < rows.length; i++) {
+        const rowValues = rows[i].split(',');
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          columnData.push(parseFloat(rowValues[j]));
+        }
+      }
+      // Sort the column data in ascending order
+      columnData.sort((a, b) => a - b);
+
+      // Calculate the index of Q3 in the sorted column data
+      const q3Index = Math.floor(columnData.length * 3 / 4);
+
+      // Calculate the Q3 value for the column
+      q3Values[j] = columnData[q3Index];
+    }
+
+    // Construct the new CSV content with Q3 values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${q3Values.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+ }
+
+ if(func=="variance"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const sumValues = new Array(headers.length).fill(0);
+    const sumSquares = new Array(headers.length).fill(0);
+
+    // Calculate the sum and sum of squares for each column
+    for (let i = 1; i < rows.length; i++) {
+      const rowValues = rows[i].split(',');
+      for (let j = 0; j < headers.length; j++) {
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          sumValues[j] += parseFloat(rowValues[j]);
+          sumSquares[j] += Math.pow(parseFloat(rowValues[j]), 2);
+        }
+      }
+    }
+
+    const variances = new Array(headers.length).fill(0);
+
+    // Calculate the variance for each column
+    for (let j = 0; j < headers.length; j++) {
+      const n = rows.length - 1;
+      const mean = sumValues[j] / n;
+      const meanSquare = sumSquares[j] / n;
+      const variance = meanSquare - Math.pow(mean, 2);
+      variances[j] = variance.toFixed(3);
+    }
+
+    // Construct the new CSV content with variance values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${variances.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+
+ }
+
+ if(func=="standard"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const sumValues = new Array(headers.length).fill(0);
+    const sumSquares = new Array(headers.length).fill(0);
+
+    // Calculate the sum and sum of squares for each column
+    for (let i = 1; i < rows.length; i++) {
+      const rowValues = rows[i].split(',');
+      for (let j = 0; j < headers.length; j++) {
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          sumValues[j] += parseFloat(rowValues[j]);
+          sumSquares[j] += Math.pow(parseFloat(rowValues[j]), 2);
+        }
+      }
+    }
+
+    const variances = new Array(headers.length).fill(0);
+
+    // Calculate the variance for each column
+    for (let j = 0; j < headers.length; j++) {
+      const n = rows.length - 1;
+      const mean = sumValues[j] / n;
+      const meanSquare = sumSquares[j] / n;
+      const variance = meanSquare - Math.pow(mean, 2);
+      const stdDev = Math.sqrt(variance);
+      variances[j] = stdDev.toFixed(3);
+    }
+
+    // Construct the new CSV content with standard deviation values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${variances.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+ }
+
+ if(func=="sknewness"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const sumValues = new Array(headers.length).fill(0);
+    const sumSquares = new Array(headers.length).fill(0);
+    const sumCubes = new Array(headers.length).fill(0);
+
+    // Calculate the sum, sum of squares, and sum of cubes for each column
+    for (let i = 1; i < rows.length; i++) {
+      const rowValues = rows[i].split(',');
+      for (let j = 0; j < headers.length; j++) {
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          const value = parseFloat(rowValues[j]);
+          sumValues[j] += value;
+          sumSquares[j] += Math.pow(value, 2);
+          sumCubes[j] += Math.pow(value, 3);
+        }
+      }
+    }
+
+    const skewnesses = new Array(headers.length).fill(0);
+
+    // Calculate the skewness for each column
+    for (let j = 0; j < headers.length; j++) {
+      const n = rows.length - 1;
+      const mean = sumValues[j] / n;
+      const variance = (sumSquares[j] / n) - Math.pow(mean, 2);
+      const stdDev = Math.sqrt(variance);
+      const skewness = ((sumCubes[j] / n) - (3 * mean * sumSquares[j] / n) + (2 * Math.pow(mean, 3))) / Math.pow(stdDev, 3);
+      skewnesses[j] = skewness.toFixed(3);
+    }
+
+    // Construct the new CSV content with skewness values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${skewnesses.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+ }
+ if(func=="kurtosis"){
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const firstRow = rows[0]; 
+
+    const headers = firstRow.split(',').map(header => header.trim());
+
+    const sumValues = new Array(headers.length).fill(0);
+    const sumSquares = new Array(headers.length).fill(0);
+    const sumCubes = new Array(headers.length).fill(0);
+    const sumFourths = new Array(headers.length).fill(0);
+
+    // Calculate the sum, sum of squares, sum of cubes, and sum of fourths for each column
+    for (let i = 1; i < rows.length; i++) {
+      const rowValues = rows[i].split(',');
+      for (let j = 0; j < headers.length; j++) {
+        if (!isNaN(parseFloat(rowValues[j]))) {
+          const value = parseFloat(rowValues[j]);
+          sumValues[j] += value;
+          sumSquares[j] += Math.pow(value, 2);
+          sumCubes[j] += Math.pow(value, 3);
+          sumFourths[j] += Math.pow(value, 4);
+        }
+      }
+    }
+
+    const kurtoses = new Array(headers.length).fill(0);
+
+    // Calculate the kurtosis for each column
+    for (let j = 0; j < headers.length; j++) {
+      const n = rows.length - 1;
+      const mean = sumValues[j] / n;
+      const variance = (sumSquares[j] / n) - Math.pow(mean, 2);
+      const stdDev = Math.sqrt(variance);
+      const kurtosis = ((sumFourths[j] / n) - (4 * mean * sumCubes[j] / n) + (6 * Math.pow(mean, 2) * sumSquares[j] / n) - (3 * Math.pow(mean, 4))) / Math.pow(stdDev, 4);
+      kurtoses[j] = kurtosis.toFixed(3);
+    }
+
+    // Construct the new CSV content with kurtosis values
+    const csvContent = `data:text/csv;charset=utf-8,${headers.join(',')}\n${kurtoses.join(',')}`;
+
+    const link = document.createElement('a');
+    link.setAttribute('href', csvContent);
+    link.setAttribute('download', "result.csv");
+
+    link.click(); // Trigger download
+  });
+
+ }
   progressBar.value = 100;
   document.getElementById("errorMsg").innerText =
     "Success: see downloaded file.";
