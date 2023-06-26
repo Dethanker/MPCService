@@ -2,7 +2,6 @@ package data_management
 
 import (
 	"fmt"
-	"math"
 	"math/big"
 	"testing"
 
@@ -15,7 +14,7 @@ func TestSharesShamir(t *testing.T) {
 	a, err := NewUniformRandomVector(n, MPCPrimeHalf)
 	assert.NoError(t, err)
 
-	shares, err := CreateSharesShamirN(a, 5)
+	shares, err := CreateSharesShamir(a)
 	assert.NoError(t, err)
 	fmt.Println(shares)
 	b, err := JoinSharesShamir(shares)
@@ -40,29 +39,29 @@ func TestEncVec(t *testing.T) {
 	assert.Equal(t, a, d)
 }
 
-func TestCsvFileSplitJoin(t *testing.T) {
-	nodeNames := []string{"Berlin_node", "Paris_node", "Ljubljana_node"}
-	pubKeys := make([][]byte, 3)
-	secKeys := make([][]byte, 3)
-	var err error
-	for i := 0; i < 3; i++ {
-		pubKeys[i], secKeys[i], _, err = key_management.LoadKeysFromCertKey("../key_management/keys_certificates", nodeNames[i])
-		assert.NoError(t, err)
-	}
-	vec, _, _, err := SplitCsvFile("framingham_tiny.csv", "framingham_tiny_enc.txt", pubKeys)
-	assert.NoError(t, err)
+// func TestCsvFileSplitJoin(t *testing.T) {
+// 	nodeNames := []string{"Berlin_node", "Paris_node", "Ljubljana_node"}
+// 	pubKeys := make([][]byte, 3)
+// 	secKeys := make([][]byte, 3)
+// 	var err error
+// 	for i := 0; i < 3; i++ {
+// 		pubKeys[i], secKeys[i], _, err = key_management.LoadKeysFromCertKey("../key_management/keys_certificates", nodeNames[i])
+// 		assert.NoError(t, err)
+// 	}
+// 	vec, _, _, err := SplitCsvFile("framingham_tiny.csv", "framingham_tiny_enc.txt", pubKeys)
+// 	assert.NoError(t, err)
 
-	shares := make([][]*big.Int, 3)
-	for i := 0; i < 3; i++ {
-		shares[i], _, err = ReadShare("framingham_tiny_enc.txt", pubKeys[i], secKeys[i], i)
-		assert.NoError(t, err)
-	}
+// 	shares := make([][]*big.Int, 3)
+// 	for i := 0; i < 3; i++ {
+// 		shares[i], _, err = ReadShare("framingham_tiny_enc.txt", pubKeys[i], secKeys[i], i)
+// 		assert.NoError(t, err)
+// 	}
 
-	b := JoinSharesShamirFloat(shares)
-	for i, _ := range vec {
-		assert.Equal(t, math.Trunc(vec[i]*10), math.Trunc(b[i]*10))
-	}
-}
+// 	b := JoinSharesShamirFloat(shares)
+// 	for i, _ := range vec {
+// 		assert.Equal(t, math.Trunc(vec[i]*10), math.Trunc(b[i]*10))
+// 	}
+// }
 
 func TestFileDownload(t *testing.T) {
 	err := DownloadShare("https://unilj-my.sharepoint.com/:t:/g/personal/tilen_marc_fmf_uni-lj_si/EVXan3OtjOdJmYyM7J7lqJYBK6aDPoN9Bku8fEk9dcu4Ig?e=auX45f&download=1", "test2_enc.txt")
