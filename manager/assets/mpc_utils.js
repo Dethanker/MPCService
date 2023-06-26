@@ -773,7 +773,7 @@ async function mpc_computation2() {
     }
   
     // 将结果转换为CSV格式的字符串
-    const csvContent = 'data:text/csv;charset=utf-8,' + res.map(e => e.join(',')).join('\n');
+    const csvContent = res.map(e => e.join(',')).join('\n');
   
     // 创建Blob对象
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -792,7 +792,7 @@ async function mpc_computation2() {
   }
   
   
-  const nodesnumber = allNodes.length;
+  const nodesnumber = selectedNodesIndexes.length;
   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
     .then(response => response.text())
     .then(text => {
