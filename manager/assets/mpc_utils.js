@@ -707,7 +707,7 @@ async function mpc_computation2() {
   function NewUniformRandomVector(n, max) {
     const v = new Array(n);
     for (let i = 0; i < n; i++) {
-      v[i] = Math.floor(Math.random() * max);
+      v[i] = Math.floor(Math.random() * Number(max));
     }
     return v;
   }
