@@ -1,3 +1,4 @@
+
 function load_nodes_table() {
   // 创建style元素
   var style = document.createElement("style");
@@ -700,7 +701,7 @@ async function mpc_computation2() {
   );
 
 
-  require('dotenv').config();
+
   process.env.NODES_NUMBER = 4;
   console.log(process.env.NODES_NUMBER);
   // interpret the result
