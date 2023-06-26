@@ -745,6 +745,9 @@ async function mpc_computation2() {
       res[i] = new Array(input.length);
       // linear function going through input[j]
       for (let j = 0; j < input.length; j++) {
+        if (typeof a[j] === 'undefined') {
+  a[j] = Math.floor(Math.random() * Number(MPCPrime));
+}
         const aj = BigInt(a[j]);
         const iPlusOne = BigInt(i+1);
         const ajiPlusOne = aj * iPlusOne;
