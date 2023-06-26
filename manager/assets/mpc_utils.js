@@ -800,11 +800,11 @@ async function mpc_computation2() {
       const bigIntArray = [];
       for (let i = 1; i < rows.length; i++) {
         const rowValues = rows[i].split(',');
-        const rowIntArray = [];
+        
         for(let j = 0; j < rowValues.length; j++){
-          rowIntArray.push(Number(rowValues[j]));
+          bigIntArray.push(Number(rowValues[j]));
         }
-        bigIntArray.push(rowIntArray);
+        
       }
       console.log(bigIntArray);
   
