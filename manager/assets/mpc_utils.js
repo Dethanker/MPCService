@@ -749,7 +749,7 @@ async function mpc_computation2() {
         const iPlusOne = BigInt(i+1);
         const ajiPlusOne = aj * iPlusOne;
   
-        let val = floatToBigInt(input[j]); // 将浮点数转换为整数
+        let val = Number.isInteger(input[j]) ? input[j] : parseInt(input[j]);
   
         // Check if input value is too big
         if (val >= MPCPrimeHalf) {
@@ -786,6 +786,7 @@ async function mpc_computation2() {
     document.body.appendChild(link);
     link.click();
   }
+  
   
   const nodesnumber = allNodes.length;
   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
