@@ -800,12 +800,16 @@ async function mpc_computation2() {
       const bigIntArray = [];
       for (let i = 1; i < rows.length; i++) {
         const rowValues = rows[i].split(',');
-        bigIntArray.push(rowValues.map(v => Number(v)));
+        const rowIntArray = [];
+        for(let j = 0; j < rowValues.length; j++){
+          rowIntArray.push(Number(rowValues[j]));
+        }
+        bigIntArray.push(rowIntArray);
       }
       console.log(bigIntArray);
   
       CreateSharesShamirN(bigIntArray, nodesnumber);
-      console.log(shares);
+      //console.log(shares);
     });
 
 
