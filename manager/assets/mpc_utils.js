@@ -1,4 +1,4 @@
-import * as fs from 'node:fs/';
+
 function load_nodes_table() {
   // 创建style元素
   var style = document.createElement("style");
