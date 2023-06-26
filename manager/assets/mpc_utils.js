@@ -737,7 +737,7 @@ async function mpc_computation2() {
   
   function CreateSharesShamirN(input, n) {
     // Open file named secretShares.txt for writing/appending
-    const fs = require('fs');
+   // const fs = require('fs');
     const file = fs.createWriteStream('secretShares.txt', { flags: 'a' });
     
     // f(i) = ai + x
