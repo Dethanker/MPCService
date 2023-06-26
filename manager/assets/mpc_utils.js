@@ -690,6 +690,7 @@ async function mpc_computation2() {
   let response = await rawResponse.json();
   console.log("Response obtained");
 
+ 
   let res = JoinSharesShamir(
     pubKey,
     secKey,
@@ -698,6 +699,10 @@ async function mpc_computation2() {
     response[2].Result
   );
 
+
+  require('dotenv').config();
+  process.env.NODES_NUMBER = 4;
+  console.log(process.env.NODES_NUMBER);
   // interpret the result
   //let csvText = VecToCsvText(res, response[0].Cols, funcName);
 

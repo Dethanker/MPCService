@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io"
 	"math/big"
 	"os"
 	"os/exec"
@@ -32,6 +33,47 @@ func NewUniformRandomVector(n int, max *big.Int) ([]*big.Int, error) {
 		}
 	}
 	return v, err
+}
+func CreateSharesShamirN(input []*big.Int, n int64) ([][]*big.Int, error) {
+	// Open file named secretShares.txt for writing/appending
+	file, err := os.OpenFile("secretShares.txt", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	// f(i) = ai + x
+	a, err := NewUniformRandomVector(len(input), MPCPrime)
+	if err != nil {
+		return nil, err
+	}
+
+	res := make([][]*big.Int, n)
+	for i := int64(0); i < n; i++ {
+		res[i] = make([]*big.Int, len(input))
+		// linear function going through input[j]
+		for j := 0; j < len(input); j++ {
+			res[i][j] = new(big.Int).Mul(a[j], big.NewInt(i+1))
+			val := new(big.Int).Set(input[j])
+			if new(big.Int).Abs(val).Cmp(MPCPrimeHalf) > 0 {
+				return nil, fmt.Errorf("error: input value too big")
+			}
+			// in case input is negative
+			if val.Sign() < 0 {
+				val.Add(MPCPrime, val)
+			}
+			res[i][j].Add(val, res[i][j])
+			res[i][j].Mod(res[i][j], MPCPrime)
+
+			// Write to file
+
+		}
+		if _, err := fmt.Fprintln(file, res[i]); err != nil {
+			return nil, err
+		}
+	}
+
+	return res, nil
 }
 
 // CreateSharesShamir is a helping function that splits a vector
@@ -251,7 +293,7 @@ func SplitCsvFile(file, output string, pubKeys [][]byte) ([]float64, [][]*big.In
 		return nil, nil, nil, err
 	}
 
-	for i := int64(0); i < 3; i++ {
+	for i := int64(0); i < int64(len(shares)); i++ {
 		msg, err := EncryptVec(shares[i], pubKeys[i])
 		if err != nil {
 			return nil, nil, nil, err
@@ -326,34 +368,79 @@ func ReadShare(file string, pubKey, secKey []byte, nodeId int) ([]*big.Int, []st
 
 	reader := bufio.NewReader(f)
 
-	countLines := 0
 	var decVec []*big.Int
-	for countLines < 3 {
-		text, err := Readln(reader)
+	var cols []string
 
-		if countLines != nodeId {
-			countLines++
-			continue
+	for {
+		text, isPrefix, err := reader.ReadLine()
+		if err == io.EOF {
+			break
 		}
-
-		decVec, err = DecVec(text, pubKey, secKey)
 		if err != nil {
 			return nil, nil, err
 		}
-		countLines++
-	}
-	// columns info
-	text, err := Readln(reader)
-	if err != nil {
-		return nil, nil, err
-	}
+		if len(text) == 0 && isPrefix {
+			continue // skip empty lines
+		}
 
-	cols := strings.Split(text, ",")
+		if len(cols) == 0 { // first non-empty line
+			cols = strings.Split(string(text), ",")
+			continue
+		}
+
+		if nodeId == 0 { // read the first share
+			decVec, err = DecVec(string(text), pubKey, secKey)
+			if err != nil {
+				return nil, nil, err
+			}
+			break
+		} else {
+			nodeId-- // count down to find the desired node
+		}
+	}
 
 	err = f.Close()
 
 	return decVec, cols, err
 }
+
+// func ReadShare(file string, pubKey, secKey []byte, nodeId int) ([]*big.Int, []string, error) {
+// 	f, err := os.Open(file)
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
+
+// 	reader := bufio.NewReader(f)
+
+// 	countLines := 0
+// 	var decVec []*big.Int
+// 	for countLines < 3 {
+// 		text, err := Readln(reader)
+
+// 		if countLines != nodeId {
+// 			countLines++
+// 			continue
+// 		}
+
+// 		decVec, err = DecVec(text, pubKey, secKey)
+// 		if err != nil {
+// 			return nil, nil, err
+// 		}
+// 		countLines++
+// 	}
+// 	// columns info
+// 	text, err := Readln(reader)
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
+
+// 	cols := strings.Split(text, ",")
+
+// 	err = f.Close()
+
+// 	return decVec, cols, err
+
+// }
 
 func ReduceToCols(input []*big.Int, colsAll []string, val string) ([]*big.Int, []string, error) {
 	cols := strings.Split(val, ",")

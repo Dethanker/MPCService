@@ -1,6 +1,7 @@
 package data_management
 
 import (
+	"fmt"
 	"math"
 	"math/big"
 	"testing"
@@ -14,9 +15,9 @@ func TestSharesShamir(t *testing.T) {
 	a, err := NewUniformRandomVector(n, MPCPrimeHalf)
 	assert.NoError(t, err)
 
-	shares, err := CreateSharesShamir(a)
+	shares, err := CreateSharesShamirN(a, 5)
 	assert.NoError(t, err)
-
+	fmt.Println(shares)
 	b, err := JoinSharesShamir(shares)
 	assert.NoError(t, err)
 
