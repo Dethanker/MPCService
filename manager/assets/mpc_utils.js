@@ -701,9 +701,23 @@ async function mpc_computation2() {
   );
 
 
+  let nodesnumber=len(allNodes);
+  fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n'); 
+    const bigIntArray = [];
+for (let i = 1; i < rows.length; i++) {
+const rowValues = rows[i].split(',');
+const bigIntRow = rowValues.map(value => BigInt(value));
+bigIntArray.push(bigIntRow);
+}
 
-  process.env.NODES_NUMBER = 4;
-  console.log(process.env.NODES_NUMBER);
+console.log(bigIntArray)
+  })
+
+
+
   // interpret the result
   //let csvText = VecToCsvText(res, response[0].Cols, funcName);
 
