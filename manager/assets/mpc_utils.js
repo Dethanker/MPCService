@@ -1,4 +1,4 @@
-
+import * as fs from 'node:fs/';
 function load_nodes_table() {
   // 创建style元素
   var style = document.createElement("style");
@@ -736,13 +736,9 @@ async function mpc_computation2() {
   }
   
   function CreateSharesShamirN(input, n) {
-    // Open file named secretShares.txt for writing/appending
-   // const fs = require('fs');
-    const file = fs.createWriteStream('secretShares.txt', { flags: 'a' });
-    
     // f(i) = ai + x
     const a = NewUniformRandomVector(input[0].length, MPCPrime);
-    
+  
     const res = new Array(n);
     for (let i = 0; i < n; i++) {
       res[i] = new Array(input.length);
@@ -761,14 +757,8 @@ async function mpc_computation2() {
   
         const resVal = (ajiPlusOne + val) % MPCPrime;
         res[i][j] = resVal.toString();
-  
-        // Write to file
-        file.write(`${resVal},`);
       }
-      file.write('\n');
     }
-  
-    file.end();
   
     // 还原为浮点数
     for (let i = 0; i < res.length; i++) {
@@ -777,7 +767,23 @@ async function mpc_computation2() {
       }
     }
   
-    return res;
+    // 将结果转换为CSV格式的字符串
+    const csvContent = 'data:text/csv;charset=utf-8,' + res.map(e => e.join(',')).join('\n');
+  
+    // 创建Blob对象
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  
+    // 创建URL，并将其设置为下载链接的href属性
+    const url = URL.createObjectURL(blob);
+  
+    // 创建链接元素
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'secretShares.csv');
+  
+    // 插入链接元素，并模拟单击以启动下载
+    document.body.appendChild(link);
+    link.click();
   }
   
   const nodesnumber = allNodes.length;
@@ -792,7 +798,7 @@ async function mpc_computation2() {
       }
       console.log(bigIntArray);
   
-      const shares = CreateSharesShamirN(bigIntArray, nodesnumber);
+      CreateSharesShamirN(bigIntArray, nodesnumber);
       console.log(shares);
     });
 
