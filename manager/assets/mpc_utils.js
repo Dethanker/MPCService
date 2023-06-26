@@ -731,8 +731,9 @@ async function mpc_computation2() {
    */
   function bigIntToFloat(num) {
     const precision = 10 ** 6;
-    const integerPart = num / precision;
-    const decimalPart = (num % precision) / precision;
+    const numAsNumber = Number(num);
+    const integerPart = numAsNumber / precision;
+    const decimalPart = (num % BigInt(precision)) / BigInt(precision);
     return Number(integerPart) + Number(decimalPart);
   }
   
