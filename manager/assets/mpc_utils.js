@@ -707,7 +707,7 @@ async function mpc_computation2() {
   function NewUniformRandomVector(n, max) {
     const v = new Array(n);
     for (let i = 0; i < n; i++) {
-      v[i] = Number(crypto.getRandomValues(new Uint32Array(1))[0] % BigInt(max));
+      v[i] = Math.floor(Math.random() * max);
     }
     return v;
   }
