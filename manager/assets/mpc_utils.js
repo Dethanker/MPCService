@@ -701,7 +701,7 @@ async function mpc_computation2() {
   );
 
 
-  let nodesnumber=len(allNodes);
+  let nodesnumber=allNodes.length;
   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
   .then(response => response.text())
   .then(text => {
