@@ -54,10 +54,10 @@ func managerConn(name, myAddr, managerAddr string, pubKey []byte, certFolder str
 	_ = caCertPool.AppendCertsFromPEM(caCert)
 
 	dialer := websocket.Dialer{
-		TLSClientConfig: &tls.Config{
-			Certificates: []tls.Certificate{cert},
-			RootCAs:      caCertPool,
-		},
+		//TLSClientConfig: &tls.Config{
+		//Certificates: []tls.Certificate{cert},
+		//RootCAs:      caCertPool,
+		//},
 	}
 
 	conn, _, err := dialer.Dial(u.String(), nil)
