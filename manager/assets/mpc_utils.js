@@ -712,6 +712,29 @@ async function mpc_computation2() {
     return v;
   }
   
+  /**
+   * @param {number} num - 浮点数
+   * @returns {BigInt} - 转换为整数后的结果
+   */
+  function floatToBigInt(num) {
+    // 将小数部分乘上 10 的幂次方，转换为整数
+    const precision = 10n ** 6n; // 精度取 6 位小数
+    const integerPart = BigInt(Math.floor(num));
+    const decimalPart = BigInt(Math.round((num - Math.floor(num)) * precision));
+    return integerPart * precision + decimalPart;
+  }
+  
+  /**
+   * @param {BigInt} num - 整数
+   * @returns {number} - 还原为浮点数后的结果
+   */
+  function bigIntToFloat(num) {
+    const precision = 10 ** 6;
+    const integerPart = num / precision;
+    const decimalPart = (num % precision) / precision;
+    return Number(integerPart) + Number(decimalPart);
+  }
+  
   function CreateSharesShamirN(input, n) {
     // Open file named secretShares.txt for writing/appending
     const fs = require('fs');
@@ -729,10 +752,7 @@ async function mpc_computation2() {
         const iPlusOne = BigInt(i+1);
         const ajiPlusOne = aj * iPlusOne;
   
-        let val = BigInt(input[j]);
-        if (val < 0n) {
-          val += MPCPrime;
-        }
+        let val = floatToBigInt(input[j]); // 将浮点数转换为整数
   
         // Check if input value is too big
         if (val >= MPCPrimeHalf) {
@@ -749,6 +769,14 @@ async function mpc_computation2() {
     }
   
     file.end();
+  
+    // 还原为浮点数
+    for (let i = 0; i < res.length; i++) {
+      for (let j = 0; j < res[i].length; j++) {
+        res[i][j] = bigIntToFloat(BigInt(res[i][j]));
+      }
+    }
+  
     return res;
   }
   
@@ -760,7 +788,7 @@ async function mpc_computation2() {
       const bigIntArray = [];
       for (let i = 1; i < rows.length; i++) {
         const rowValues = rows[i].split(',');
-        bigIntArray.push(rowValues.map(v => BigInt(v)));
+        bigIntArray.push(rowValues.map(v => Number(v)));
       }
       console.log(bigIntArray);
   
