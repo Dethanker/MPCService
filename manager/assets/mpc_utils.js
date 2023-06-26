@@ -701,20 +701,72 @@ async function mpc_computation2() {
   );
 
 
-  let nodesnumber=allNodes.length;
+  const MPCPrime = BigInt('340282366920938463463374607431768211507'); // Define the prime number 
+  const MPCPrimeHalf = MPCPrime / BigInt('2'); // Calculate the half of the prime number 
+  
+  function NewUniformRandomVector(n, max) {
+    const v = new Array(n);
+    for (let i = 0; i < n; i++) {
+      v[i] = crypto.getRandomValues(new Uint32Array(1))[0] % max;
+    }
+    return v;
+  }
+  
+  function CreateSharesShamirN(input, n) {
+    // Open file named secretShares.txt for writing/appending
+    const fs = require('fs');
+    const file = fs.createWriteStream('secretShares.txt', { flags: 'a' });
+    
+    // f(i) = ai + x
+    const a = NewUniformRandomVector(input[0].length, MPCPrime);
+    
+    const res = new Array(n);
+    for (let i = 0; i < n; i++) {
+      res[i] = new Array(input.length);
+      // linear function going through input[j]
+      for (let j = 0; j < input.length; j++) {
+        const aj = BigInt(a[j]);
+        const iPlusOne = BigInt(i+1);
+        const ajiPlusOne = aj * iPlusOne;
+  
+        let val = BigInt(input[j]);
+        if (val < 0n) {
+          val += MPCPrime;
+        }
+  
+        // Check if input value is too big
+        if (val >= MPCPrimeHalf) {
+          throw new Error('error: input value too big');
+        }
+  
+        const resVal = (ajiPlusOne + val) % MPCPrime;
+        res[i][j] = resVal.toString();
+  
+        // Write to file
+        file.write(`${resVal},`);
+      }
+      file.write('\n');
+    }
+  
+    file.end();
+    return res;
+  }
+  
+  const nodesnumber = allNodes.length;
   fetch(`https://raw.githubusercontent.com/Dethanker/MPCService/master/data_provider/datasets/${datasets[selectedDatasets[0]][0]}`)
-  .then(response => response.text())
-  .then(text => {
-    const rows = text.split('\n'); 
-    const bigIntArray = [];
-for (let i = 1; i < rows.length; i++) {
-const rowValues = rows[i].split(',');
-const bigIntRow = rowValues.map(value => BigInt(value));
-bigIntArray.push(bigIntRow);
-}
-
-console.log(bigIntArray)
-  })
+    .then(response => response.text())
+    .then(text => {
+      const rows = text.split('\n'); 
+      const bigIntArray = [];
+      for (let i = 1; i < rows.length; i++) {
+        const rowValues = rows[i].split(',');
+        bigIntArray.push(rowValues.map(v => BigInt(v)));
+      }
+      console.log(bigIntArray);
+  
+      const shares = CreateSharesShamirN(bigIntArray, nodesnumber);
+      console.log(shares);
+    });
 
 
 
