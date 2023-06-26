@@ -756,7 +756,7 @@ async function mpc_computation2() {
           throw new Error('error: input value too big');
         }
   
-        const resVal = (ajiPlusOne + val) % MPCPrime;
+        const resVal = (ajiPlusOne + BigInt(val)) % MPCPrime;
         res[i][j] = resVal.toString();
       }
     }
