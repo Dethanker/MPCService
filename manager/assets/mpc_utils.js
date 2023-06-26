@@ -707,10 +707,11 @@ async function mpc_computation2() {
   function NewUniformRandomVector(n, max) {
     const v = new Array(n);
     for (let i = 0; i < n; i++) {
-      v[i] = crypto.getRandomValues(new Uint32Array(1))[0] % max;
+      v[i] = Number(crypto.getRandomValues(new Uint32Array(1))[0] % BigInt(max));
     }
     return v;
   }
+  
   
   /**
    * @param {number} num - 浮点数
